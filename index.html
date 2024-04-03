@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Gestión de Clases</title>
+  <!-- Librería WaterCSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+  <!-- Link estilos css -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/modal.css">
+</head>
+
+<body>
+  <header>
+    <p class="name-page">Gestión de Clases</p>
+    <nav id="nav-bar">
+      <ul>
+        <a href="#" target="_blank" class="nav-links">
+          <li>Pagina principal</li>
+        </a>
+        <a href="#" target="_blank" class="nav-links">
+          <li>Ayuda</li>
+        </a>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Modal Form de Alta -->
+  <section class="modal">
+    <div class="modal__container">
+      <div class="btn-cerrar-modal">
+        <a href="#" class="modal__close" title="Cerrar">X</a>
+      </div>
+    
+      <img src="assets/img/modal-alta.svg" alt="img-modal" class="modal__img">
+      <h2 class="modal__title">Alta de Clase</h2>
+      <p class="modal__paragraph">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente similique quas
+        ipsa quo enim dolore, fuga fugiat totam harum pariatur commodi officia, voluptatibus explicabo tempore sit,
+        doloremque nulla illum quidem!</p>
+      <form>
+        <label for="lbl-materia">
+          Materia
+          <input class="input__materia inputs-form-alta" id="lbl-materia" type="text" name="materia" value="" required>
+        </label>
+        <label for="lbl-comision">
+          Comision
+          <input class="input__comision inputs-form-alta" id="lbl-comision" type="text" name="comision" value="" required>
+        </label>
+        <label for="lbl-hora">
+          Hora
+          <input class="input__hora inputs-form-alta" id="lbl-hora" type="time" name="hora" value="" required>
+        </label>
+        <label for="lbl-fecha">
+          Fecha
+          <input class="input__fecha inputs-form-alta" id="lbl-fecha" type="date" name="fecha" value="" required>
+        </label>
+    
+        <!-- <label for="lbl-temas">Tareas</label> -->
+        <textarea rows="2" placeholder="Ingresá una tarea" class="textarea-form-class"></textarea>
+    
+        <!-- <label for="lbl-novedades">Novedades</label> -->
+        <textarea rows="2" placeholder="¿Alguna Novedad?" class="textarea-form-class"></textarea>
+      </form>
+    
+      <a href="#" class="btn-confirmar-alta" title="Confirmar Alta">Confirmar</a>
+    </div>
+  </section>
+
+  <!-- Modal Form de Modificaciones -->
+
+  <main>
+    <div class="container">
+      <section id="menu">
+        <div class="descripcion-menu">
+          <h3 class="heading3-descripcion">¿Qué quieres hacer?</h3>
+        </div>
+        <div class="btn-menu">
+          <button class="btn-alta btns-menu" id="id-btn-alta">Alta de clase</button>
+          <button class="btn-modificar btns-menu" id="id-btn-modificar">Modificar una clase</button>
+          <button class="btn-baja btns-menu" id="id-btn-baja">Baja de clase</button>
+        </div>
+        <div class="imagen-menu">
+          <img class="img-logo-menu" src="https://image.shutterstock.com/image-photo/image-260nw-1407027353.jpg"
+            width="150" height="150" alt="Logo¿?" title="Imagen del Logo">
+        </div>
+      </section>
+
+      <section id="tabla-clases">
+        <div class="contenedor-buscador-filtros">
+          <div class="search">
+            <input class="input-search" type="text" placeholder="Buscar">
+            <input class="input-submit-search" type="submit" value="🔎">
+          </div>
+          <div class="filter">
+            <select>
+              <option value="">Filtrar</option>
+              <option value="Por fecha">Por fecha</option>
+              <option value="Por hora">Por hora</option>
+              <option value="Por Materia">Por Materia</option>
+            </select>
+          </div>
+        </div>
+        <div class="contenedor-tabla">
+          <table>
+            <tr>
+              <th class="checkbox"></th>
+              <th class="id">ID</th>
+              <th class="materia">Materia</th>
+              <th class="comision">Comision</th>
+              <th class="hora">Hora</th>
+              <th class="fecha">Fecha</th>
+              <th class="temas">Temas</th>
+              <th class="novedades">Novedades</th>
+            </tr>
+            <tr>
+              <td><input class="input-checkbox-register" type="checkbox" name="seleccionar_registro"></td>
+              <td>1</td>
+              <td>Análisis Matemático 1</td>
+              <td>1°1ra TM</td>
+              <td>10:10-12:00hs</td>
+              <td>Martes, 12/03/2024</td>
+              <td><textarea rows="1" placeholder="Ingresá una tarea">Funciones cuadráticas.</textarea></td>
+              <td><textarea rows="1" placeholder="¿Alguna Novedad?">Repasar los temas de geometría antes del examen del próximo viernes.</textarea>
+              </td>
+            </tr>
+            <tr>
+              <td><input class="input-checkbox-register" type="checkbox" name="seleccionar_registro"></td>
+              <td>2</td>
+              <td>Inglés 2</td>
+              <td>2°2da TM</td>
+              <td>8:00-10:10hs</td>
+              <td>Miércoles, 12/03/2024</td>
+              <td><textarea rows="1" placeholder="Ingresá una tarea">Ejercicios 1 y 2 del capítulo 1 de IT1</textarea>
+              </td>
+              <td><textarea rows="1" placeholder="¿Alguna Novedad?"></textarea></td>
+            </tr>
+            <tr>
+              <td><input class="input-checkbox-register" type="checkbox" name="seleccionar_registro"></td>
+              <td>3</td>
+              <td>Prácticas Profesionalizantes 3</td>
+              <td>3°1ra TM</td>
+              <td>8:00-12:00hs</td>
+              <td>Viernes, 22/03/2024</td>
+              <td><textarea rows="1" placeholder="Ingresá una tarea">Proyecto Integrador Final</textarea></td>
+              <td><textarea rows="1" placeholder="¿Alguna Novedad?"></textarea></td>
+            </tr>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <script type="module" src="assets/js/app.js"></script>
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+
+</html>
