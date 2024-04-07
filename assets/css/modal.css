@@ -2,7 +2,7 @@ a, a:hover {
   text-decoration: none;
 }
 
-.modal {
+.modal,.modal2 {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,55 +12,41 @@ a, a:hover {
   display: flex;
   opacity: 0!important;
   pointer-events: none!important;
-  transition: opacity .6s .9s!important;
-  /* customProperty */
-  --transform: translateY(-100vh)!important;
-  --transition: transform .8s!important;
+  transition: opacity .6s!important;
+
 }
 
-.modal--show {
+.modal--show,.modal2--show  {
   opacity: 1!important;
   pointer-events: unset!important;
   transition: opacity .6s!important;
-  --transform: translateY(0)!important;
-  --transition: transform .8s .8s!important;
+
 }
 
-.modal__container {
-  height: 80vh;
+.modal__container,.modal2__container {
   width: 90%;
   background-color: midnightblue;
   margin: auto;
   max-width: 600px;
   max-height: 90%;
   border-radius: 6px;
-  padding: 3em 2.5em;
+  padding: 1em 2.5em;
   display: grid;
   gap: 1em;
   place-items: center;
   grid-auto-columns: 100%;
   transform: var(--transform)!important;
   transition: var(--transition)!important;
-  overflow-y: scroll;
   overflow-x: hidden;
+  border: 1px solid white;
 }
 
-.modal__title {
+.modal__title,.modal__title2 {
   font-size: 2.5rem;
   margin: 0;
 }
 
-.modal__paragraph {
-  margin-bottom: 10px;
-}
-
-.modal__img {
-  /* width: 90%; */
-  min-height: 100px;
-  max-width: 200px;
-}
-
-.btn-cerrar-modal {
+.btn-cerrar-modal,.btn-cerrar-modal2 {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -68,7 +54,7 @@ a, a:hover {
   width: 100%;
 }
 
-.modal__close {
+.modal__close,.modal2__close {
   text-decoration: none;
   color: #000;
   background-color: red;
@@ -80,7 +66,7 @@ a, a:hover {
   transition: background-color .3s;
 }
 
-.modal__close:hover {
+.modal__close:hover,.modal2__close:hover {
   color: red;
   background-color: #fff;
 }
@@ -91,34 +77,29 @@ form {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 4px;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .inputs-form-alta {
-  width: 100%;
+  font-size: 15px;
+  width: 250px;
+  border: 2px solid white;
 }
 
 .textarea-form-class {
-  border: 1px solid #8c8c8c!important;
+  border: 2px solid white!important;
   field-sizing: content;
   max-height: 200px;
+  resize: none;
+
 }
 
-.btn-confirmar-alta {
-  text-decoration: none;
-  color: #fff;
-  background-color: #000;
+.btn_añadirr{
   padding: 1em 2em;
   border-radius: 6px;
-  display: inline-block;
   font-weight: 600;
-  transition: background-color .3s;
 }
 
-.btn-confirmar-alta:hover {
-  color: #000000;
-  background-color: #fff;
-}
 
 
 @media (max-width: 800px) {
@@ -129,4 +110,10 @@ form {
   .modal__title {
     font-size: 2rem;
   }
+}
+
+
+.bad{
+  display: none;
+  background-color: darkred;
 }
