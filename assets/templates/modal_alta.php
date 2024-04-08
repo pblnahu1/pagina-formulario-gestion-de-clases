@@ -1,4 +1,3 @@
-
 <section class="modal">
     <div class="modal__container">
         <div class="btn-cerrar-modal"> <a href="#" class="modal__close" title="Cerrar">X</a>  </div>
