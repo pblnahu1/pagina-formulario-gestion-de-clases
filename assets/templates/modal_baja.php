@@ -3,6 +3,7 @@
         <div class="btn-cerrar-modal2"> <a href="#" class="modal2__close" title="Cerrar">X</a>  </div>
     
         <h2 class="modal2__title">Baja de Clases</h2>
+        <p>Esta seguro de querer bajar estas clases :</p>
 
         <table>
 
@@ -19,12 +20,32 @@
 
             <tbody>
             <?php
-            $consulta = "SELECT materias.NOMBRE,clases.COMISION,clases.FECHA,
-            clases.HORA,clases.TEMAS,clases.NOVEDAD FROM clases , profesores , materias  
-            WHERE clases.CODIGO_PROFESOR = profesores.codigo and clases.codigo_materia = materias.codigo " ;
-            $resultado= mysqli_query($conexionBD,$consulta);
+          
+            if(isset($_SESSION['Array_valores_checkbox'])) {
+                $valores_checkbox = $_SESSION['Array_valores_checkbox'];
+
+                $consulta = "SELECT materias.NOMBRE,clases.COMISION,clases.FECHA,clases.HORA,clases.TEMAS,clases.NOVEDAD
+                            FROM clases , profesores , materias  
+                            WHERE clases.CODIGO_PROFESOR = profesores.codigo 
+                            and clases.codigo_materia = materias.codigo 
+                            and clases.ID_CLASE IN (";
+                $consulta .= str_repeat("?,", count($valores_checkbox) - 1) . "?"; //El "?," se repite la cantidad de posiciones que tiene valores_checkbox -1 y luego lo concatena con un ultimo "?" .
+                
+                $consulta .= ")"; //Cierro la consulta.
+                $stmt = $conexionBD->prepare($consulta);   //$stmt : Sentecia Preparada.
+                
+                $stmt->bind_param(str_repeat("i", count($valores_checkbox)), ...$valores_checkbox);
+                // el "i" se refiere a que solo permite numeros enteros.
+                // se repite la cantidad de posiciones que tiene $valores_checkbox.
+                // ...$valores_checkbox: Pone en los ? los valores de cada posicion del array .
+
+                $stmt->execute(); //Ejecuto la consulta.
+
+                $resultado = $stmt->get_result();  // Devuelve el resultado de la consulta y luego lo guardo en $resultado.
+
+
             if(isset($resultado)&& $resultado->num_rows>0){
-                while($fila=mysqli_fetch_array($resultado)){ 
+                while($fila=$resultado->fetch_assoc()){ 
                 ?>
                 <tr>
                   <td> <?php echo $fila['NOMBRE'] ?> </td>
@@ -40,17 +61,14 @@
               else{
                 echo"<tr ><td colspan='8' style=font-size:20px >No Se Encontraron Resultados.</td></tr>";
                 //el colspan permite que ocuper las 8 columnas.        
-              }            
+              }  
+            }          
             ?>
 
             </tbody>
-
+              
           </table>
         
     
     </div>
 </section>
-
-<script type="module" src="assets/js/main.js"></script>
-<script type="module" src="assets/js/app.js"></script>
-

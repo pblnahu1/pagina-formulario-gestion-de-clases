@@ -2,6 +2,7 @@
 include("assets/php/conexion.php");
 session_start();
 $_SESSION["id"] = 1;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,6 +109,7 @@ $_SESSION["id"] = 1;
 
   <script type="module" src="assets/js/app.js"></script>
   <script type="module" src="assets/js/main.js"></script>
+
 </body>
 
 </html>
