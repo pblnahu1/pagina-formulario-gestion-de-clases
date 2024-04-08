@@ -33,13 +33,7 @@
                 
                 $consulta .= ")"; //Cierro la consulta.
                 $stmt = $conexionBD->prepare($consulta);   //$stmt : Sentecia Preparada.
-                if ($stmt && $stmt instanceof mysqli_stmt) {
-                  // La consulta se preparó correctamente
-                  echo "La consulta se preparó correctamente.";
-              } else {
-                  // Hubo un error al preparar la consulta
-                  echo "Error al preparar la consulta: " . $conexionBD->error;
-              }
+                
                 $stmt->bind_param(str_repeat("i", count($valores_checkbox)), ...$valores_checkbox);
                 // el "i" se refiere a que solo permite numeros enteros.
                 // se repite la cantidad de posiciones que tiene $valores_checkbox.
