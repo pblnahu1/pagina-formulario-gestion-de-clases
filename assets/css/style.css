@@ -85,7 +85,7 @@ main {
 }
 
 #menu {
-  min-width: 240px;
+  min-width: 170px;
   text-align: center;
 }
 
@@ -100,7 +100,7 @@ main {
 #menu .btns-menu {
   width: 100%;
   margin: 15px 0px;
-  padding: 20px;
+  padding: 14px;
   font-weight: bold;
 }
 
@@ -164,22 +164,31 @@ main {
 td, th {
   vertical-align: middle!important;
   border: 1px solid #000;
+  text-align: center;
 }
 
+.checkbox { width: 35px; }
+.id_profe { width: 74px;} 
 .input-checkbox-register {margin: 0!important;}
-.id, .checkbox { width: 35px; }
-.materia { width: 150px; }
-.comision {width: 90px;}
-.hora, .fecha { width: 90px; }
-.temas, .novedades { width: 255px; }
 
-textarea {
-  border: 1px solid #8c8c8c!important;
-  field-sizing: content;
-  max-height: 100px;
+
+.td_textarea {
+  border: 1px solid #8c8c8c !important;
+  max-height: 40px;
+  resize: none;
+  overflow-y: auto;
+  height: 37px;
+  width: 150px;
+  font-size: 13px;
+  padding: 0px 4px;
 }
 
-@media (max-width: 1400px) {
+th{
+  width: auto;
+}
+
+
+@media screen and (max-width: 1200px) {  
   .container {
     /* display: grid;
     grid-auto-columns: 100%;
