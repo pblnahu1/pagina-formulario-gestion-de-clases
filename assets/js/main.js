@@ -8,6 +8,7 @@ const d = document
 d.addEventListener("DOMContentLoaded", () => {
   const $closeModal = document.querySelector(".modal__close")
   const $closeModal2 = document.querySelector(".modal2__close")
+  const $closeModal3 = document.querySelector(".modal3__close")
 
   const $btnAlta = d.getElementById("id-btn-alta")
   const $btnModificar = d.getElementById("id-btn-modificar")
@@ -15,23 +16,38 @@ d.addEventListener("DOMContentLoaded", () => {
   const CheckboxModifyDelete = document.querySelectorAll(".input-checkbox-register");
   
 // inhabilitar o habilitar btn-baja:
-var acumulador = 0;
+var acumuladorBaja = 0;
+var acumuladorModif = 0;
 var array = [];
 
 for (let i = 0; i < CheckboxModifyDelete.length; i++) {
   CheckboxModifyDelete[i].addEventListener("click", (e) => {
     $btnBaja.removeAttribute('disabled');
+    $btnModificar.removeAttribute('disabled');
+
     if (CheckboxModifyDelete[i].checked) {
-      acumulador++;
-      array[i] = CheckboxModifyDelete[i].value;
-      console.log('¡Checkbox seleccionado!' + array[i]);
+      acumuladorBaja++;
+      acumuladorModif++;
+      if(acumuladorBaja >= 1 && acumuladorModif == 1){
+        array[i] = CheckboxModifyDelete[i].value;
+        console.log('¡Checkbox seleccionado!' + array[i]);
+      }
+      else if(acumuladorBaja >= 1 && acumuladorModif != 1){
+        $btnModificar.setAttribute('disabled', "true");
+        array[i] = CheckboxModifyDelete[i].value;
+        console.log('¡Checkbox seleccionado!' + array[i]);
+      }
     } else {
-      acumulador--;
+      acumuladorBaja--;
+      acumuladorModif--;
       array.splice(i, 1);     // elimino del array el valor del chechbox indicado.
-       console.log('Checkbox no seleccionado.');
-      console.log(acumulador);
-      if (acumulador == 0) {
+      console.log('Checkbox no seleccionado.');
+      console.log(acumuladorBaja);
+      if (acumuladorBaja == 0  ) {
         $btnBaja.setAttribute('disabled', "true");
+      }
+      if (acumuladorModif == 0  ) {
+        $btnModificar.setAttribute('disabled', "true");
       }
     }
 
@@ -63,9 +79,9 @@ for (let i = 0; i < CheckboxModifyDelete.length; i++) {
 
 
 
-  fn_button_alta($btnAlta, $closeModal)
-  fn_button_modificacion($btnModificar)
-  fn_button_baja($btnBaja, $closeModal2)
+  fn_button_alta($btnAlta, $closeModal);
+  fn_button_modificacion($btnModificar,$closeModal3);
+  fn_button_baja($btnBaja, $closeModal2);
 } );
 
 

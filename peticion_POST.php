@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Imprimir el array para verificar que se recibió correctamente
         print_r($array);
         session_start();
-$_SESSION['Array_valores_checkbox'] = $array;
+        $_SESSION['Array_valores_checkbox'] = $array;
 
         // Puedes realizar cualquier otra operación con el array aquí
         

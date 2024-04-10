@@ -67,12 +67,12 @@ if(strlen($_POST['materia']) >= 1 && strlen($_POST['comision']) > 0 &&  strlen($
     $id_profe = $_SESSION["id"];
     $materia = trim($_POST['materia']);
     $comision=trim($_POST['comision']);
-    $fecha_reg = trim($_POST['fecha']);
+    $fecha = trim($_POST['fecha']);
     $hora = trim($_POST['hora']);
     $temas= trim($_POST['temas']);
     $novedad = trim($_POST['novedad']);
     $consulta = "INSERT INTO clases(CODIGO_PROFESOR,CODIGO_MATERIA,COMISION,FECHA,HORA,TEMAS,NOVEDAD) VALUES 
-                                    ('$id_profe','$materia','$comision','$fecha_reg','$hora','$temas','$novedad')";  
+                                    ('$id_profe','$materia','$comision','$fecha','$hora','$temas','$novedad')";  
     $resultado= mysqli_query($conexionBD,$consulta);  
     if($resultado){
             header("Location:index.php");

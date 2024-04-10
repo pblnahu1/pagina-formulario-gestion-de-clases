@@ -42,7 +42,7 @@
                 $stmt->execute(); //Ejecuto la consulta.
 
                 $resultado = $stmt->get_result();  // Devuelve el resultado de la consulta y luego lo guardo en $resultado.
-
+              
 
             if(isset($resultado)&& $resultado->num_rows>0){
                 while($fila=$resultado->fetch_assoc()){ 
@@ -59,10 +59,12 @@
                 }
               }
               else{
-                echo"<tr ><td colspan='8' style=font-size:20px >No Se Encontraron Resultados.</td></tr>";
+                echo"<tr ><td colspan='6' style=font-size:20px >No Se Encontraron Resultados.</td></tr>";
                 //el colspan permite que ocuper las 8 columnas.        
               }  
-            }          
+            } 
+            
+            
             ?>
 
             </tbody>
