@@ -35,9 +35,11 @@ $_SESSION["id"] = 1;
 
   <!-- Modal Form de Alta -->
   <?php include("assets/templates/modal_alta.php")  ?>
+  <!-- Modal Form de Baja -->
   <?php include("assets/templates/modal_baja.php")  ?>
 
   <!-- Modal Form de Modificaciones -->
+  <?php include("assets/templates/modal_modificacion.php")  ?>
 
   <main>
     <div class="container">
@@ -48,7 +50,7 @@ $_SESSION["id"] = 1;
         </div>
         <div class="btn-menu">
           <button class="btn-alta btns-menu" id="id-btn-alta">Alta de clase</button>
-          <button class="btn-modificar btns-menu" id="id-btn-modificar">Modificar una clase</button>
+          <button class="btn-modificar btns-menu" id="id-btn-modificar" disabled >Modificar una clase</button>
           <button class="btn-baja btns-menu" id="id-btn-baja" disabled >Baja de clase</button>
           <div class="imagen-menu">
           <img class="img-logo-menu" src="https://image.shutterstock.com/image-photo/image-260nw-1407027353.jpg"
@@ -123,9 +125,6 @@ function mostrarDatos($result){
     ?>
     <tr>
       <td><input class="input-checkbox-register" type="checkbox" name="seleccionar_registro" value="<?php echo  $fila['ID_CLASE'] ?>"></td>
-      <!-- <td><a href="assets/php/eliminar_registro.php?id_clase=<?php echo  $fila['ID_CLASE'] ?> " onclick="return confirm('¿Realmente desea eliminar el registro?')">
-      <i class="fas fa-trash spin" > </i></a></td> </td> -->
-    
       <td> <?php echo $fila['CODIGO_PROFESOR'] ?> </td>
       <td> <?php echo $fila['NOMBRE'] ?> </td>
       <td> <?php echo $fila['COMISION'] ?>  </td>

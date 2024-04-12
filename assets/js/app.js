@@ -2,22 +2,42 @@
 const d = document;
 const $modal = d.querySelector(".modal"); // Variable global
 const $modal2 = d.querySelector(".modal2"); // Variable global
+const $modal3 = d.querySelector(".modal3"); // Variable global
 const fondo_modal = document.querySelector(".modal__container");  
 const inputs_modal = document.querySelectorAll(".inputs-form-alta");
+const select_materia = document.querySelector(".mod_materia");
+const select_comision = document.querySelector(".mod_comision");
+const select_hora = document.querySelector(".mod_hora");
 
+function actualizarHora(Hora) {
+  let opcionesHTML = '';
+  const opciones = {
+    "8:00-10:00": ["8:00-10:00", "8:00-12:00", "10:10-12:00", "18:00-22:00", "20:10-22:00", "18:00-20:00"],
+    "10:10-12:00": ["10:10-12:00", "8:00-10:00","10:10-12:00", "8:00-12:00", "20:10-22:00", "18:00-22:00", "18:00-20:00"],
+    "8:00-12:00": ["8:00-12:00", "8:00-10:00", "10:10-12:00","8:00-12:00", "20:10-22:00", "18:00-22:00", "18:00-20:00"],
+    "18:00-20:00": ["18:00-20:00", "8:00-10:00", "10:10-12:00", "8:00-12:00","18:00-20:00", "18:00-22:00", "20:10-22:00"],
+    "20:10-22:00": ["20:10-22:00", "8:00-10:00", "10:10-12:00", "8:00-12:00", "18:00-20:00","20:10-22:00", "18:00-22:00",],
+    "18:00-22:00": ["18:00-22:00", "8:00-10:00", "10:10-12:00", "8:00-12:00", "18:00-20:00", "20:10-22:00","18:00-22:00"]
+  };
+
+  const opcionesArray = opciones[Hora];
+  for (let i = 0; i < opcionesArray.length; i++) {
+    if(i==0){
+    opcionesHTML += `<option value="${opcionesArray[i]}" hidden>${opcionesArray[i]}</option>`;
+    }
+    else{
+      opcionesHTML += `<option value="${opcionesArray[i]}" >${opcionesArray[i]}</option>`;
+
+    }
+  }
+
+  return opcionesHTML;
+}
 
 export const fn_button_alta = (openModalAlta, closeModalAlta) => {
   openModalAlta.addEventListener("click", (e) => {
     e.preventDefault()
-    /*fetch('assets/templates/modal_alta.html')
-      .then(response => response.text())
-      .then(template => {
-        console.log(template)
-        $modal.innerHTML = template
-        $modal.classList.add("modal--show")
-      })
-      .catch(err => console.error(err))
-    */
+    
     $modal.classList.add("modal--show")
     
   })
@@ -42,10 +62,84 @@ export const fn_button_alta = (openModalAlta, closeModalAlta) => {
   })
 }
 
-export const fn_button_modificacion = (btnModificar) => btnModificar.addEventListener("click", (e) => {
-  e.preventDefault()
-  alert("Hiciste click en Modificar")
-})
+export const fn_button_modificacion =(openModalModificacion, closeModalModificacion) => {
+  openModalModificacion.addEventListener("click", (e) => {
+    e.preventDefault()
+  
+    $modal3.classList.add("modal3--show");
+
+      let valorMateria = parseInt(select_materia.value);
+      switch(valorMateria ){
+        case 1: 
+        select_materia.innerHTML=" ";
+        select_materia.innerHTML+=`
+        <option value="1" class="op-materia" >1.Análisis Matemático 1</option>
+        <option value="2"  class="op-materia" >2.Inglés 2</option>
+        <option value="3"  class="op-materia" >3.Prácticas Profesionalizantes 3</option> ` ;
+        break;
+        case 2: 
+        select_materia.innerHTML=" ";
+        select_materia.innerHTML+=`
+        <option value="2" hidden>2.Inglés 2</option>
+        <option value="1" class="op-materia" >1.Análisis Matemático 1</option>
+        <option value="2"  class="op-materia" >2.Inglés 2</option>
+        <option value="3"  class="op-materia" >3.Prácticas Profesionalizantes 3</option> ` ;
+        break;
+        case 3: 
+        select_materia.innerHTML=" ";
+        select_materia.innerHTML+=`
+        <option value="3"  hidden >3.Prácticas Profesionalizantes 3</option>
+        <option value="1" class="op-materia" >1.Análisis Matemático 1</option>
+        <option value="2"  class="op-materia" >2.Inglés 2</option>
+        <option value="3"  class="op-materia" >3.Prácticas Profesionalizantes 3</option>` ;
+        break;
+      }
+
+      let valorComision = select_comision.value;
+      if(valorComision == "1.º, 1.ª"){
+        select_comision.innerHTML=" ";
+        select_comision.innerHTML+=`
+        <option value="1.º, 1.ª" >1.º, 1.ª</option>
+        <option value="1.º, 2.ª" >1.º, 2.ª</option>
+        <option value="1.º, 3.ª" >1.º, 3.ª</option> `;
+      }
+      else if(valorComision == "1.º, 2.ª"){
+        select_comision.innerHTML=" ";
+        select_comision.innerHTML+=`
+        <option value="1.º, 2.ª" hidden>1.º, 2.ª</option>
+        <option value="1.º, 1.ª" >1.º, 1.ª</option>
+        <option value="1.º, 2.ª" >1.º, 2.ª</option>
+        <option value="1.º, 3.ª" >1.º, 3.ª</option> `;
+      }
+      else{
+        select_comision.innerHTML=" ";
+        select_comision.innerHTML+=`
+        <option value="1.º, 3.ª" hidden >1.º, 3.ª</option>
+        <option value="1.º, 1.ª" >1.º, 1.ª</option>
+        <option value="1.º, 2.ª" >1.º, 2.ª</option>
+        <option value="1.º, 3.ª" >1.º, 3.ª</option>
+        `;
+      }
+
+      
+      select_hora.innerHTML = actualizarHora(select_hora.value);
+
+  });
+
+  closeModalModificacion.addEventListener("click", (e) => {
+      e.preventDefault();
+      /*fetch('assets/templates/modal_alta.html')
+        .then(response => response.text())
+        .then(template => {
+          console.log(template)
+          $modal.classList.remove("modal--show")
+        })
+        .catch(err => console.error(err))
+      */
+        $modal3.classList.remove("modal3--show");
+    });
+
+  }
 
 export const fn_button_baja = (openModalBaja, closeModalBaja) => {
   openModalBaja.addEventListener("click", (e) => {
@@ -60,7 +154,6 @@ export const fn_button_baja = (openModalBaja, closeModalBaja) => {
       .catch(err => console.error(err))
     */
     $modal2.classList.add("modal2--show")
-    
   })
 
 
@@ -74,6 +167,7 @@ export const fn_button_baja = (openModalBaja, closeModalBaja) => {
       })
       .catch(err => console.error(err))
     */
+
       $modal2.classList.remove("modal2--show");
     
   })

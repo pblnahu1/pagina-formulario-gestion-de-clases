@@ -104,6 +104,11 @@ main {
   font-weight: bold;
 }
 
+button:disabled{
+  cursor: not-allowed;
+  opacity: 1;
+}
+
 .btn-alta {
   background: blue;
 }
@@ -116,12 +121,22 @@ main {
   background: rgb(51, 126, 51);
 }
 
+.btn-modificar:disabled,.btn-modificar:hover:disabled{
+  background-color: black;
+  color: #666666;
+}
+
 .btn-modificar:hover{
   background: rgb(31, 74, 31)
 }
 
 .btn-baja {
   background: rgb(232, 21, 21);
+}
+
+.btn-baja:disabled,.btn-baja:hover:disabled{
+  background-color: black;
+  color: #666666;
 }
 
 .btn-baja:hover{
