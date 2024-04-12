@@ -8,8 +8,8 @@
 
         <label >
             Materia
-            <select class="inputs-form-alta" name="materia">
-            <option value="" >Seleccione la materia</option>
+            <select class="inputs-modal" name="materia">
+            <option value=""  >Seleccione la materia</option>
             <option value="1" >1.Análisis Matemático 1</option>
             <option value="2" >2.Inglés 2</option>
             <option value="3" >3.Prácticas Profesionalizantes 3</option>
@@ -18,7 +18,7 @@
 
         <label >
             Comision
-            <select class="inputs-form-alta" name="comision">
+            <select class="inputs-modal" name="comision">
                 <option value="" >Seleccione la comision</option>
                 <option value="1.º, 1.ª" >1.º, 1.ª</option>
                 <option value="1.º, 2.ª" >1.º, 2.ª</option>
@@ -28,20 +28,20 @@
 
         <label >
             Hora
-            <select class="inputs-form-alta" name="hora">
-                <option value="" >Seleccione hora</option>
-                <option value="8:00 a 10:00">8:00 a 10:00</option>
-                <option value="8:00 a 12:00" >8:00 a 12:00</option>
-                <option value="10:10 a 12:00" >10:10 a 12:00</option>
-                <option value="20:10 a 22:00" >20:10 a 22:00</option>
-                <option value="18:00 a 22:00" >18:00 a 22:00</option>
-                <option value="18:00 a 20:00" >18:00 a 20:00</option>
-            </select>      
+            <select class="inputs-modal " name="hora">
+              <option value="" >Seleccione hora</option>
+              <option value="8:00-10:00">8:00-10:00</option>
+              <option value="10:10-12:00" >10:10-12:00</option>
+              <option value="8:00-12:00" >8:00-12:00</option>
+              <option value="18:00-22:00" >18:00-22:00</option>
+              <option value="20:10-22:00" >20:10-22:00</option>
+              <option value="18:00-20:00" >18:00-20:00</option>
+          </select>       
         </label>
         
         <label >
             Fecha
-            <input class="inputs-form-alta" type="date" name="fecha" >
+            <input class="inputs-modal" type="date" name="fecha" >
         </label>
 
         <textarea  name="temas" maxlength="50" rows="2" placeholder="Ingresá una tarea" class="textarea-form-class"></textarea>
@@ -91,7 +91,7 @@ else{
         const $modal = document.querySelector(".modal");
         const bad = document.querySelector(".bad") ;
         const fondo_modal = document.querySelector(".modal__container");  
-        const inputs_modal = document.querySelectorAll(".inputs-form-alta");
+        const inputs_modal = document.querySelectorAll(".inputs-modal");
 
         $modal.classList.add("modal--show");
         fondo_modal.style.borderColor="red";
