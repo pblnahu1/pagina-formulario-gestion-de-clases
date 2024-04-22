@@ -80,11 +80,12 @@ $_SESSION["id"] = 1;
             <thead>
             <tr>
               <th class="checkbox"></th>
-              <th class="id_profe">Id Profesor</th>
               <th class="materia">Materia</th>
               <th class="comision">Comision</th>
               <th class="hora">Hora</th>
               <th class="fecha">Fecha</th>
+              <th class="aula">Aula</th>
+              <th class="archivos">Archivos</th>
               <th class="temas">Temas</th>
               <th class="novedades">Novedades</th>
             </tr>
@@ -92,9 +93,9 @@ $_SESSION["id"] = 1;
 
             <tbody>
             <?php
-            $consulta = "SELECT clases.ID_CLASE,clases.CODIGO_PROFESOR,materias.NOMBRE,clases.COMISION,clases.FECHA,
-            clases.HORA,clases.TEMAS,clases.NOVEDAD FROM clases , profesores , materias  
-            WHERE clases.CODIGO_PROFESOR = profesores.codigo and clases.codigo_materia = materias.codigo " ;
+            $consulta = "SELECT clases.ID_CLASE,materias.NOMBRE,clases.COMISION,clases.FECHA,clases.HORA,clases.AULA,clases.ARCHIVOS,clases.TEMAS,clases.NOVEDADES 
+            FROM clases , materias , usuario 
+            WHERE clases.CODIGO_USUARIO = usuario.CODIGO and clases.CODIGO_MATERIA = materias.CODIGO " ;
             $resultado= mysqli_query($conexionBD,$consulta);
             mostrarDatos($resultado);
             ?>
@@ -125,19 +126,20 @@ function mostrarDatos($result){
     ?>
     <tr>
       <td><input class="input-checkbox-register" type="checkbox" name="seleccionar_registro" value="<?php echo  $fila['ID_CLASE'] ?>"></td>
-      <td> <?php echo $fila['CODIGO_PROFESOR'] ?> </td>
       <td> <?php echo $fila['NOMBRE'] ?> </td>
       <td> <?php echo $fila['COMISION'] ?>  </td>
       <td> <?php echo $fila['HORA'] ?> </td>
       <td> <?php echo $fila['FECHA'] ?> </td>
+      <td> <?php echo $fila['AULA'] ?> </td>
+      <td> <?php echo $fila['ARCHIVOS'] ?> </td>
       <td> <textarea class="td_textarea" rows="1"  readonly > <?php echo $fila['TEMAS'] ?> </textarea> </td>
-      <td> <textarea  class="td_textarea" rows="1" readonly  ><?php echo $fila['NOVEDAD'] ?></textarea> </td>
+      <td> <textarea  class="td_textarea" rows="1" readonly  ><?php echo $fila['NOVEDADES'] ?></textarea> </td>
     </tr>
     <?php
     }
   }
   else{
-    echo"<tr ><td colspan='8' style=font-size:20px >No Se Encontraron Resultados.</td></tr>";
+    echo"<tr ><td colspan='9' style=font-size:20px >No Se Encontraron Resultados.</td></tr>";
     //el colspan permite que ocuper las 8 columnas.        
   }
 }
