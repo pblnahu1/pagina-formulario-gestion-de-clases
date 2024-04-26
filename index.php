@@ -1,9 +1,9 @@
 <?php 
-include("assets/php/conexion.php");
-session_start();
-$_SESSION["id"] = 1;
-
+  include("assets/php/conexion.php");
+  session_start();
+  $_SESSION["id"] = 1;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,13 +33,9 @@ $_SESSION["id"] = 1;
     </nav>
   </header>
 
-  <!-- Modal Form de Alta -->
-  <?php include("assets/templates/modal_alta.php")  ?>
-  <!-- Modal Form de Baja -->
-  <?php include("assets/templates/modal_baja.php")  ?>
-
-  <!-- Modal Form de Modificaciones -->
-  <?php include("assets/templates/modal_modificacion.php")  ?>
+  <?php include("assets/templates/modal_alta.php"); ?>
+  <?php include("assets/templates/modal_baja.php"); ?>
+  <?php include("assets/templates/modal_modificacion.php"); ?>
 
   <main>
     <div class="container">
@@ -53,8 +49,7 @@ $_SESSION["id"] = 1;
           <button class="btn-modificar btns-menu" id="id-btn-modificar" disabled >Modificar una clase</button>
           <button class="btn-baja btns-menu" id="id-btn-baja" disabled >Baja de clase</button>
           <div class="imagen-menu">
-          <img class="img-logo-menu" src="https://image.shutterstock.com/image-photo/image-260nw-1407027353.jpg"
-            width="150" height="150" alt="Logo¿?" title="Imagen del Logo">
+          <img class="img-logo-menu" src="assets/img/logo.jpg" width="150" height="150" alt="Logo Sistema de Administración Universal S.A.U" title="Logo Sistema de Administración Universal S.A.U">
         </div>
         </div>
       </section>
@@ -74,34 +69,32 @@ $_SESSION["id"] = 1;
             </select>
           </div>
         </div>
+
         <div class="contenedor-tabla">
           <table>
-
             <thead>
-            <tr>
-              <th class="checkbox"></th>
-              <th class="materia">Materia</th>
-              <th class="comision">Comision</th>
-              <th class="hora">Hora</th>
-              <th class="fecha">Fecha</th>
-              <th class="aula">Aula</th>
-              <th class="archivos">Archivos</th>
-              <th class="temas">Temas</th>
-              <th class="novedades">Novedades</th>
-            </tr>
+              <tr>
+                <th class="checkbox"></th>
+                <th class="materia">Materia</th>
+                <th class="comision">Comisión</th>
+                <th class="aula">Aula</th>
+                <th class="hora">Hora</th>
+                <th class="fecha">Fecha</th>
+                <th class="temas">Temas</th>
+                <th class="novedades">Novedades</th>
+                <th class="archivos">Archivos</th>
+              </tr>
             </thead>
 
             <tbody>
             <?php
-            $consulta = "SELECT clases.ID_CLASE,materias.NOMBRE,clases.COMISION,clases.FECHA,clases.HORA,clases.AULA,clases.ARCHIVOS,clases.TEMAS,clases.NOVEDADES 
-            FROM clases , materias , usuario 
-            WHERE clases.CODIGO_USUARIO = usuario.CODIGO and clases.CODIGO_MATERIA = materias.CODIGO " ;
-            $resultado= mysqli_query($conexionBD,$consulta);
-            mostrarDatos($resultado);
+              $consulta = "SELECT clases.ID_CLASE, materias.NOMBRE, clases.COMISION, clases.FECHA, clases.HORA, clases.AULA, clases.ARCHIVOS, clases.TEMAS,clases.NOVEDADES 
+              FROM clases, materias, usuario 
+              WHERE clases.CODIGO_USUARIO = usuario.CODIGO and clases.CODIGO_MATERIA = materias.CODIGO";
+              $resultado = mysqli_query($conexionBD, $consulta);
+              mostrarDatos($resultado);
             ?>
-
             </tbody>
-
           </table>
         </div>
       </section>
@@ -117,30 +110,27 @@ $_SESSION["id"] = 1;
 
 </html>
 
-
-
 <?php 
 function mostrarDatos($result){
-  if(isset($result)&& $result->num_rows>0){
-    while($fila=mysqli_fetch_array($result)){ 
+  if(isset($result) && $result->num_rows>0){
+    while($fila = mysqli_fetch_array($result)){ 
     ?>
     <tr>
-      <td><input class="input-checkbox-register" type="checkbox" name="seleccionar_registro" value="<?php echo  $fila['ID_CLASE'] ?>"></td>
-      <td> <?php echo $fila['NOMBRE'] ?> </td>
-      <td> <?php echo $fila['COMISION'] ?>  </td>
-      <td> <?php echo $fila['HORA'] ?> </td>
-      <td> <?php echo $fila['FECHA'] ?> </td>
-      <td> <?php echo $fila['AULA'] ?> </td>
-      <td> <?php echo $fila['ARCHIVOS'] ?> </td>
-      <td> <textarea class="td_textarea" rows="1"  readonly > <?php echo $fila['TEMAS'] ?> </textarea> </td>
-      <td> <textarea  class="td_textarea" rows="1" readonly  ><?php echo $fila['NOVEDADES'] ?></textarea> </td>
+      <td><input class="input-checkbox-register" type="checkbox" name="seleccionar_registro" value="<?php echo $fila['ID_CLASE']; ?>"></td>
+      <td><?php echo $fila['NOMBRE']; ?></td>
+      <td><?php echo $fila['COMISION']; ?></td>
+      <td><?php echo $fila['AULA']; ?></td>
+      <td><?php echo $fila['HORA']; ?></td>
+      <td><?php echo $fila['FECHA']; ?></td>
+      <td><textarea class="td_textarea" rows="1" readonly > <?php echo $fila['TEMAS']; ?></textarea></td>
+      <td><textarea class="td_textarea" rows="1" readonly  ><?php echo $fila['NOVEDADES']; ?></textarea></td>
+      <td><?php echo $fila['ARCHIVOS']; ?></td>
     </tr>
     <?php
     }
   }
   else{
-    echo"<tr ><td colspan='9' style=font-size:20px >No Se Encontraron Resultados.</td></tr>";
-    //el colspan permite que ocuper las 8 columnas.        
+    echo"<tr><td colspan='9' style='font-size:20px;'>No Se Encontraron Resultados.</td></tr>";
   }
 }
 
