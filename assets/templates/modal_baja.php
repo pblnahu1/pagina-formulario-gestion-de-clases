@@ -4,7 +4,7 @@
     
         <h2 class="modal2__title">Baja de Clases</h2>
         <p>Esta seguro de querer bajar estas clases :</p>
-
+        <form method="POST">
         <table>
 
             <thead>
@@ -24,10 +24,10 @@
             if(isset($_SESSION['Array_valores_checkbox'])) {
                 $valores_checkbox = $_SESSION['Array_valores_checkbox'];
 
-                $consulta = "SELECT materias.NOMBRE,clases.COMISION,clases.FECHA,clases.HORA,clases.TEMAS,clases.NOVEDAD
-                            FROM clases , profesores , materias  
-                            WHERE clases.CODIGO_PROFESOR = profesores.codigo 
-                            and clases.codigo_materia = materias.codigo 
+                $consulta = "SELECT materias.NOMBRE,clases.COMISION,clases.FECHA,clases.HORA,clases.TEMAS,clases.NOVEDADES
+                            FROM clases , usuario , materias  
+                            WHERE clases.CODIGO_USUARIO =   usuario.CODIGO 
+                            and clases.CODIGO_MATERIA = materias.CODIGO 
                             and clases.ID_CLASE IN (";
                 $consulta .= str_repeat("?,", count($valores_checkbox) - 1) . "?"; //El "?," se repite la cantidad de posiciones que tiene valores_checkbox -1 y luego lo concatena con un ultimo "?" .
                 
@@ -53,7 +53,7 @@
                   <td> <?php echo $fila['HORA'] ?> </td>
                   <td> <?php echo $fila['FECHA'] ?> </td>
                   <td> <textarea class="td_textarea" rows="1"  readonly > <?php echo $fila['TEMAS'] ?> </textarea> </td>
-                  <td> <textarea  class="td_textarea" rows="1" readonly  ><?php echo $fila['NOVEDAD'] ?></textarea> </td>
+                  <td> <textarea  class="td_textarea" rows="1" readonly  ><?php echo $fila['NOVEDADES'] ?></textarea> </td>
                 </tr>
                 <?php
                 }
@@ -63,6 +63,10 @@
                 //el colspan permite que ocuper las 8 columnas.        
               }  
             } 
+            else{
+              echo"<tr ><td colspan='6' style=font-size:20px >No Se Encontraron Resultados.</td></tr>";
+              //el colspan permite que ocuper las 8 columnas.        
+            }  
             
             
             ?>
@@ -71,6 +75,27 @@
               
           </table>
         
-    
+          <input type="submit" name="btn_Baja" value="Eliminar" class="btn_añadir">
+
+          </form>
     </div>
 </section>
+
+
+
+<?php
+
+if (isset($_POST['btn_Baja'])) {
+  $consulta = "DELETE FROM clases where id_clase IN (";
+  $consulta .= str_repeat("?,", count($valores_checkbox) - 1) . "?"; //El "?," se repite la cantidad de posiciones que tiene valores_checkbox -1 y luego lo concatena con un ultimo "?" .
+  
+  $consulta .= ")"; //Cierro la consulta.
+  $stmt = $conexionBD->prepare($consulta);   //$stmt : Sentecia Preparada.
+  
+  $stmt->bind_param(str_repeat("i", count($valores_checkbox)), ...$valores_checkbox);
+
+  $stmt->execute(); //Ejecuto la consulta.
+
+}
+
+?>

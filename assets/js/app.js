@@ -4,7 +4,8 @@ const $modal = d.querySelector(".modal"); // Variable global
 const $modal2 = d.querySelector(".modal2"); // Variable global
 const $modal3 = d.querySelector(".modal3"); // Variable global
 const fondo_modal = document.querySelector(".modal__container");  
-const inputs_modal = document.querySelectorAll(".inputs-form-alta");
+const fondo_modal_mdn = document.querySelector(".modal3__container");  
+const inputs_modal = document.querySelectorAll(".inputs-modal");
 const select_materia = document.querySelector(".mod_materia");
 const select_comision = document.querySelector(".mod_comision");
 const select_hora = document.querySelector(".mod_hora");
@@ -137,6 +138,12 @@ export const fn_button_modificacion =(openModalModificacion, closeModalModificac
         .catch(err => console.error(err))
       */
         $modal3.classList.remove("modal3--show");
+        const bad = document.querySelector(".bad"); 
+        fondo_modal_mdn.style.borderColor="white";
+        for (let i = 0; i < inputs_modal.length; i++) {
+          inputs_modal[i].style.borderColor = "white";
+        }      
+        bad.style.display="none";
     });
 
   }
