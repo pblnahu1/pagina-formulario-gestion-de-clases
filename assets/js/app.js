@@ -7,48 +7,57 @@ const fondo_modal = document.querySelector(".modal__container");
 const inputs_modal = document.querySelectorAll(".inputs-form-alta");
 
 export const fn_button_alta = (openModalAlta, closeModalAlta) => {
-  openModalAlta.addEventListener("click", (e) => {
-    // e.preventDefault()
-    $modal.classList.add("modal--show")
-  })
+  if (openModalAlta) {
+    openModalAlta.addEventListener("click", (e) => {
+      // e.preventDefault()
+      $modal && $modal.classList.add("modal--show")
+    })
+  }
 
-
-  closeModalAlta.addEventListener("click", (e) => {
-    // e.preventDefault();
-    $modal.classList.remove("modal--show");
-    const bad = document.querySelector(".bad");
-    fondo_modal.style.borderColor = "white";
-    for (let i = 0; i < inputs_modal.length; i++) {
-      inputs_modal[i].style.borderColor = "white";
-    }
-    bad.style.display = "none";
-  })
+  if (closeModalAlta) {
+    closeModalAlta.addEventListener("click", (e) => {
+      // e.preventDefault();
+      $modal && $modal.classList.remove("modal--show");
+      const bad = document.querySelector(".bad");
+      fondo_modal.style.borderColor = "white";  
+      for (let i = 0; i < inputs_modal.length; i++) {
+        inputs_modal[i].style.borderColor = "white";
+      }
+      bad && (bad.style.display = "none");
+    })
+  }
 }
 
 export const fn_button_modificacion = (openModalModificacion, closeModalModificacion) => {
-  openModalModificacion.addEventListener("click", (e) => {
-    // e.preventDefault()
-    $modal3.classList.add("modal3--show")
-  });
+  if (openModalModificacion) {
+    openModalModificacion.addEventListener("click", (e) => {
+      // e.preventDefault()
+      $modal3 && $modal3.classList.add("modal3--show")
+    });
+  }
 
-
-  closeModalModificacion.addEventListener("click", (e) => {
-    // e.preventDefault();
-    $modal3.classList.remove("modal3--show");
-  });
+  if (closeModalModificacion) {
+    closeModalModificacion.addEventListener("click", (e) => {
+      // e.preventDefault();
+      $modal3 && $modal3.classList.remove("modal3--show");
+    });
+  }
 }
 
 export const fn_button_baja = (openModalBaja, closeModalBaja) => {
-  openModalBaja.addEventListener("click", (e) => {
-    // e.preventDefault()
-    $modal2.classList.add("modal2--show")
-  })
+  if (openModalBaja) {
+    openModalBaja.addEventListener("click", (e) => {
+      // e.preventDefault()
+      $modal2 && $modal2.classList.add("modal2--show")
+    })
+  }
 
-
-  closeModalBaja.addEventListener("click", (e) => {
-    // e.preventDefault();
-    $modal2.classList.remove("modal2--show");
-  })
+  if (closeModalBaja) {
+    closeModalBaja.addEventListener("click", (e) => {
+      // e.preventDefault();
+      $modal2 && $modal2.classList.remove("modal2--show");
+    })
+  }
 }
 
 

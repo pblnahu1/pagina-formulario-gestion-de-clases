@@ -11,6 +11,7 @@ d.addEventListener("DOMContentLoaded", () => {
   const $btnAlta = d.getElementById("id-btn-alta")
   const $btnModificar = d.getElementById("id-btn-modificar")
   const $btnBaja = d.getElementById("id-btn-baja")
+  
   const $checkboxModifyDelete = d.querySelectorAll(".input-checkbox-register");
 
   // inhabilitar o habilitar btn-baja:

@@ -23,6 +23,8 @@ $_SESSION["CODIGO_USUARIO"] = 1;
   <link rel="stylesheet" href="assets/css/modal.css">
   <link rel="icon" href="assets/img/icono.png">
 
+  <script type="module" src="assets/js/app.js"></script>
+  <script type="module" src="assets/js/main.js"></script>
 </head>
 
 <body>
@@ -146,8 +148,7 @@ $_SESSION["CODIGO_USUARIO"] = 1;
 
   <footer></footer>
 
-  <script type="module" src="assets/js/app.js"></script>
-  <script type="module" src="assets/js/main.js"></script>
+
 </body>
 
 </html>
