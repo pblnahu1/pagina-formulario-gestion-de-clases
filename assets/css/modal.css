@@ -16,7 +16,7 @@ a:hover {
   opacity: 0 !important;
   pointer-events: none !important;
   transition: opacity .6s !important;
-
+  z-index: 20;
 }
 
 .modal--show,
@@ -25,6 +25,10 @@ a:hover {
   opacity: 1 !important;
   pointer-events: unset !important;
   transition: opacity .6s !important;
+}
+
+body:has(.modal--show, .modal2--show, .modal3--show) {
+  overflow-y: hidden;
 }
 
 .modal__container,
@@ -53,7 +57,8 @@ a:hover {
 .modal__title,
 .modal__title2,
 .modal__title3 {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5.7vw, 1.8rem);
+  text-wrap: nowrap;
   margin: 0;
 }
 
@@ -99,17 +104,15 @@ form {
 
 .inputs-modal {
   font-size: 15px;
-  width: 250px;
-
+  width: clamp(177px, 35vw, 252px);
 }
 
 .textarea-form-class {
-  /* field-sizing: content; */
   max-height: 200px;
   resize: none;
 }
 
-.btn_añadirr {
+.btn_form_modal {
   padding: 1em 2em;
   border-radius: 6px;
   font-weight: 600;
@@ -119,16 +122,24 @@ form {
   width: 100%;
 }
 
-@media (max-width: 800px) {
-  .modal__container {
-    padding: 2em 1.5em;
-  }
-
-  .modal__title {
-    font-size: 2rem;
-  }
+.table_modal_baja {
+  background-color: #202b38;
 }
 
+.table_modal_baja__head {
+  background-color: #161f27;
+}
+
+@media (max-width: 500px) {
+
+  form {
+    flex-direction: column;
+  }
+
+  .inputs-modal {
+    width: 100%;
+  }
+}
 
 .bad {
   display: none;

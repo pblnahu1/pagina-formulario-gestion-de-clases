@@ -9,11 +9,18 @@
 }
 
 body {
-  /* width: 90%; */
   padding: 0 !important;
   margin: 0 !important;
   max-width: 100% !important;
   font-family: system-ui;
+}
+
+.carga {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 ul,
@@ -22,8 +29,9 @@ li {
   margin: 0;
 }
 
+/* --- Header Section --- */
 header {
-  padding: 20px 0;
+  padding: 20px 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -42,15 +50,14 @@ header {
   display: flex;
   align-items: center;
   flex-direction: row;
-  flex-wrap: wrap;
-  gap: 50px;
+  gap: 15px;
 }
 
 #nav-bar li {
   background: rgb(62, 66, 100);
   padding: 5px 10px;
   border-radius: 8px;
-  border: 1px solid transparent;
+  font-size: clamp(0.7rem, 3.7vw, 1rem)
 }
 
 #nav-bar .nav-links {
@@ -60,7 +67,7 @@ header {
 
 #nav-bar li:hover {
   background: rgb(30, 31, 46);
-  border: 1px solid #7e7e7e;
+  outline: 1px solid #7e7e7e;
 }
 
 .contenedor-bienvenida-msg {
@@ -72,23 +79,11 @@ header {
   font-size: 20px;
 }
 
-/* .msg-alta-success{
-padding: 5px 10px;
-margin: 10px 0px;
-background-color: rgb(141, 190, 141);
-color: #000;
-border-radius: 8px;
+.msg-bienvenida {
+  text-wrap: nowrap;
+  font-size: clamp(1rem, 5.7vw, 1.4rem);
 }
 
-.btn-close-msg-alta {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: #000!important;
-  padding: 5px 10px!important;
-  color: #fff;
-} */
 
 /* Seccion menu de administrador */
 main {
@@ -101,39 +96,37 @@ main {
   padding: 5px 25px;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
-
 }
 
-#menu,
-#tabla-clases {
+#seccion-menu,
+#seccion-tabla {
   padding: 10px 20px;
   margin: 15px 10px;
   border: 1px solid var(--color-borders-main);
 }
 
-#menu {
+#seccion-menu {
   min-width: 170px;
   text-align: center;
 }
 
-#menu .descripcion-menu {
+#seccion-menu .descripcion-menu {
   text-align: center;
 }
 
-#menu .heading3-descripcion {
+#seccion-menu .heading3-descripcion {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#menu .btns-menu {
+#seccion-menu .btns-menu {
   width: 100%;
   margin: 15px 0px;
   padding: 14px;
   font-weight: bold;
 }
 
-button:disabled {
+.btns-menu:disabled {
   cursor: not-allowed;
   opacity: 1;
 }
@@ -150,12 +143,6 @@ button:disabled {
   background: rgb(51, 126, 51);
 }
 
-.btn-modificar:disabled,
-.btn-modificar:hover:disabled {
-  background-color: black;
-  color: #666666;
-}
-
 .btn-modificar:hover {
   background: rgb(31, 74, 31)
 }
@@ -164,14 +151,16 @@ button:disabled {
   background: rgb(232, 21, 21);
 }
 
+.btn-baja:hover {
+  background: rgb(165, 12, 12);
+}
+
+.btn-modificar:disabled,
 .btn-baja:disabled,
+.btn-modificar:hover:disabled,
 .btn-baja:hover:disabled {
   background-color: black;
   color: #666666;
-}
-
-.btn-baja:hover {
-  background: rgb(165, 12, 12);
 }
 
 .imagen-menu img {
@@ -200,13 +189,15 @@ button:disabled {
 }
 
 /* Tabla */
+.td_hidden {
+  display: none;
+}
 
-.contenedor-tabla {
-  overflow-y: scroll;
+.contenedor-tabla_principal {
+  overflow-y: auto;
   overflow-x: hidden;
   height: 60vh;
   border: 1px solid #000;
-  padding: 10px;
 }
 
 td,
@@ -216,34 +207,13 @@ th {
   text-align: center;
 }
 
-.th-class-checkbox {
+.columna-checkbox {
   width: 35px;
-}
-
-.th-class-comision {
-  width: 83px;
-}
-
-.th-class-aula {
-  width: 52px;
-}
-
-.th-class-hora {
-  width: 100px;
-}
-
-.th-class-fecha {
-  width: 120px;
-}
-
-.id_profe {
-  width: 74px;
 }
 
 .input-checkbox-register {
   margin: 0 !important;
 }
-
 
 .td_textarea {
   max-height: 40px;
@@ -255,14 +225,153 @@ th {
   padding: 0px 4px;
 }
 
+.table_principal-heads {
+  position: sticky;
+  top: 0;
+  background-color: #202b38;
+  margin: 0;
+  z-index: 10;
+}
+
 th {
   width: auto;
+}
+
+.table_principal-body {
+  background-color: #202b38;
+}
+
+tbody tr:nth-child(even) {
+  background-color: inherit;
+}
+
+.contenedor-materia {
+  background-color: transparent;
+  max-height: 31px;
+  transition: max-height .5s;
+  overflow: hidden;
+  display: block;
+  background-color: #161f27;
+}
+
+.contenedor-materia:has(input[type="checkbox"]:checked) {
+  max-height: fit-content;
+  transition: max-height 1.5s;
+}
+
+.titulo-materia {
+  background-color: #161f27;
+  font-weight: bold;
+  display: flex;
+  border: 1px solid #000;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 20px 0 5px;
+  user-select: none;
+}
+
+.titulo-materia::after {
+  content: "🔽";
+}
+
+.checkLabel {
+  display: none;
+}
+
+.contenedor-materia:has(input[type="checkbox"]:checked) .titulo-materia::after {
+  content: "🔼";
+}
+
+
+.contenedor-materia b {
+  color: white;
+  padding: 3px;
+  letter-spacing: 3px;
+}
+
+
+
+/* --- Seccion de Notificacion de exito de alta,modificacion y baja de clase --- */
+.notificacion-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  background-color: transparent;
+}
+
+.notificacion-mensaje-box {
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  padding: 2rem 2.5rem;
+  text-align: center;
+}
+
+.notificacion-icon-container {
+  border-radius: 50%;
+  padding: 1.5rem;
+  margin: 18px 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notificacion-icon {
+  border-radius: 50%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notificacion-svg-icon {
+  height: 2rem;
+  width: 2rem;
+  color: white;
+}
+
+.notificacion-heading {
+  margin: 1rem 0;
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.notificacion-text {
+  width: 14.375rem;
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+.icon-alta {
+  background-color: #0d930d;
+}
+
+.container-icon-eliminar {
+  animation: girar 1s linear infinite;
+}
+
+.icon-eliminar {
+  background-color: red;
+
+}
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+
 }
 
 
 
 
 @media screen and (max-width: 1200px) {
+
   .container {
     /* display: grid;
     grid-auto-columns: 100%;
@@ -272,8 +381,8 @@ th {
     align-items: center;
   }
 
-  #menu,
-  #tabla-clases {
+  #seccion-menu,
+  #seccion-tabla {
     width: 100%;
     margin: 10px 0;
   }
@@ -303,8 +412,40 @@ th {
     width: 100%;
   }
 
-  .contenedor-tabla {
+  .contenedor-tabla_principal {
     overflow-y: scroll;
     overflow-x: scroll;
   }
+
+}
+
+@media screen and (max-width: 500px) {
+
+  .titulo-materia {
+    padding: 0;
+  }
+
+  .contenedor-materia b {
+    letter-spacing: 0px;
+  }
+
+}
+
+@media screen and (max-width: 380px) {
+
+  .contenedor-materia b {
+    letter-spacing: -1px;
+  }
+
+}
+
+
+
+@media screen and (max-width: 330px) {
+
+  .contenedor-materia b {
+    letter-spacing: -2px;
+    font-weight: 500;
+  }
+
 }
