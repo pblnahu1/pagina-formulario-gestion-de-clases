@@ -1,5 +1,5 @@
 # Interfaz de Gestión de Clases - Profesores
-| ![alt text](/assets/img/icono.png "Esto es el icono del sistema") | ![alt text](/assets/img/logo.png "Esto es el logo del sistema") |
+| <img src="/assets/img/icono.png" alt="Esto es el icono del sistema" width="150"/> | <img src="/assets/img/logo.png" alt="Esto es el logo del sistema" width="150"/> |
 
 ## Breve descripción
 Alta, Baja y Modificación de clases para profesores.
