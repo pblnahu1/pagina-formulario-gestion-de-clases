@@ -1,11 +1,13 @@
 <?php
 include("assets/php/conexion.php");
+include("assets/php/funciones.php");
 // Verificar si la sesión ya está activa
 if (session_status() === PHP_SESSION_NONE) {
   session_start(); // Iniciar la sesión si no está activa
 }
 
 $_SESSION["CODIGO_USUARIO"] = 1;
+date_default_timezone_set('America/Buenos_Aires');
 // $_SESSION['NUMBER_CHECKBOX'];
 ?>
 
@@ -21,14 +23,15 @@ $_SESSION["CODIGO_USUARIO"] = 1;
   <!-- Styles CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/modal.css">
-  <link rel="icon" href="assets/img/icono.png">
 
-  <script type="module" src="assets/js/app.js"></script>
-  <script type="module" src="assets/js/main.js"></script>
+  <script type="module" src="assets/js/app.js" defer></script>
+  <script type="module" src="assets/js/main.js" defer></script>
+
+  <link rel="icon" href="assets/img/icono.png">
 </head>
 
 <body>
-  <header>
+  <header id="header">
     <p class="name-page">Gestión de Clases</p>
     <nav id="nav-bar">
       <ul>
@@ -49,51 +52,47 @@ $_SESSION["CODIGO_USUARIO"] = 1;
   <?php include("assets/templates/modal_modificacion.php"); ?>
   <?php include("assets/templates/modal_baja.php"); ?>
 
-  <main>
-    <div class="contenedor-bienvenida-msg">
-      <p>¡Bienvenido
-        <?php
-        $query_welcome = "SELECT NOMBRE_PERSONA, APELLIDO_PERSONA, CARGO FROM PERSONAS WHERE CARGO = 'Profesor'";
-        $res_welcome = mysqli_query($conn, $query_welcome); // cambio
-        if ($res_welcome) {
-          $fila_welcome = mysqli_fetch_assoc($res_welcome);
-        ?>
-          <?php echo $fila_welcome['NOMBRE_PERSONA'] . " " . $fila_welcome['APELLIDO_PERSONA']; ?>! <span style="font-weight: bold; color:darkorange;">(<?php echo $fila_welcome['CARGO']; ?>)</span></p>
-    <?php
-        } else {
-          echo "Hubo un error al hacer la consulta de Bienvenida: " . mysqli_error($conn);
-        }
-    ?>
+  <?php 
+  if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']); 
 
-    <?php
-    if (isset($_GET['clase_agregada']) && $_GET['clase_agregada'] == 'true') {
-    ?>
-      <div class="msg-alta-success">
-        La clase se agregó correctamente
-      </div>
-    <?php
+    if ( $message['type'] == 'error') {      ?>
+      <script>
+        const $modal = document.querySelector(".modal"); 
+        const bad = document.querySelector(".bad");
+        $modal.classList.add("modal--show");
+        bad.style.display = "block";
+      </script>
+      <?php
     }
-    ?>
+  }
+  ?>
+
+  <main>
+
+    <div class="contenedor-bienvenida-msg">
+      <?php  bienvenida($conn); ?>
     </div>
 
 
     <div class="container">
 
-      <section id="menu">
+      <section id="seccion-menu">
         <div class="descripcion-menu">
           <h3 class="heading3-descripcion">¿Qué quieres hacer?</h3>
         </div>
-        <div class="btn-menu">
-          <button class="btn-alta btns-menu" id="id-btn-alta">Alta de clase</button>
-          <button class="btn-modificar btns-menu" id="id-btn-modificar" disabled>Modificar una clase</button>
-          <button class="btn-baja btns-menu" id="id-btn-baja" disabled>Baja de clase</button>
+        <div class="seccion-menu__items">
+          <button class="btns-menu btn-alta" id="id-btn-alta">Alta de clase</button>
+          <button class="btns-menu btn-modificar" id="id-btn-modificar" disabled>Modificar una clase</button>
+          <button class="btns-menu btn-baja" id="id-btn-baja" disabled>Baja de clase</button>
           <div class="imagen-menu">
-            <img class="img-logo-menu" src="assets/img/logo.png" width="150" height="150" alt="Logo Sistema de Administración Educativa S.A.E" title="Logo Sistema de Administración Educativa S.A.E">
+            <img class="img-logo-menu" src="assets/img/logo.png" width="150" height="150" alt="Logo Sistema de Administración Universal S.A.U" title="Logo Sistema de Administración Universal S.A.U">
           </div>
         </div>
       </section>
 
-      <section id="tabla-clases">
+      <section id="seccion-tabla">
         <div class="contenedor-buscador-filtros">
           <div class="search">
             <input class="input-search" type="text" placeholder="Buscar">
@@ -108,88 +107,43 @@ $_SESSION["CODIGO_USUARIO"] = 1;
             </select>
           </div>
         </div>
-        <div class="contenedor-tabla">
-          <table>
+    
 
-            <thead>
-              <tr>
-                <th class="th-class-checkbox"></th>
-                <th class="th-class-materia">Materia</th>
-                <th class="th-class-comision">Comisión</th>
-                <th class="th-class-aula">Aula</th>
-                <th class="th-class-hora">Hora</th>
-                <th class="th-class-fecha">Fecha</th>
-                <th class="th-class-temas">Temas</th>
-                <th class="th-class-novedades">Novedades</th>
-                <th class="th-class-archivos">Archivos</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <?php
-              $consulta = "SELECT clases.ID_CLASE, clases.CODIGO_USUARIO, usuxrol.CODIGO_ROL,
-              materias.ID_MATERIA, materias.NOMBRE_MATERIA,
-              clases.COMISION, clases.AULA, clases.FECHA, clases.HORA, clases.TEMAS, clases.NOVEDADES,
-              clases.ARCHIVOS
-              FROM clases, usuarios, materias, usuxrol
-              WHERE clases.CODIGO_USUARIO = usuarios.CODIGO_USUARIO
-              AND clases.ID_MATERIA = materias.ID_MATERIA
-              AND usuxrol.CODIGO_USUARIO = clases.CODIGO_USUARIO";
-              $resultado = mysqli_query($conn, $consulta);
-              mostrarDatos($resultado);
-              ?>
-            </tbody>
-
+        <div class="contenedor-tabla_principal">
+          <table class="table_principal-heads">
+              <thead>
+                <tr>
+                  <th class="columna-checkbox"></th>
+                  <th >Materia</th>
+                  <th >Comisión</th>
+                  <th >Aula</th>
+                  <th >Hora</th>
+                  <th >Fecha</th>
+                  <th >Temas</th>
+                  <th >Novedades</th>
+                  <th >Archivos</th>
+                </tr>
+              </thead>
           </table>
+          <?php  buscarClases($conn);  ?>
         </div>
+
       </section>
+      
     </div>
   </main>
 
-  <footer></footer>
+  <footer>
 
-
+  </footer>
+  
 </body>
 
 </html>
 
-<?php
-function mostrarDatos($result)
-{
-  if (isset($result) && $result->num_rows > 0) {
-    $id_clase_chkbx = null;
-    while ($fila = mysqli_fetch_array($result)) {
-      $id_clase_chkbx = $fila['ID_CLASE'];
-      $_SESSION['NUMBER_CHECKBOX'] = $id_clase_chkbx;
-?>
-      <tr>
-        <td><input class="input-checkbox-register" id="chkbx-<?php echo $id_clase_chkbx; ?>" type="checkbox" name="seleccionar_registro" value="<?php echo $id_clase_chkbx; ?>"></td>
-        <!-- <td><php echo $fila['TITULO_ABREVIADO']; ?></td> -->
-        <td><?php echo $fila['NOMBRE_MATERIA']; ?></td>
-        <td><?php echo $fila['COMISION']; ?></td>
-        <td><?php echo $fila['AULA']; ?></td>
-        <td><?php echo $fila['HORA']; ?></td>
-        <td><?php echo $fila['FECHA']; ?></td>
-        <td><textarea class="td_textarea" rows="1" readonly><?php echo $fila['TEMAS']; ?></textarea></td>
-        <td><textarea class="td_textarea" rows="1" readonly><?php echo $fila['NOVEDADES']; ?></textarea></td>
-        <td><?php echo $fila['ARCHIVOS']; ?></td>
-      </tr>
-      <?php
-      ?>
-      <!-- Script para manejar el evento del checkbox. Para visualizar problemas futuros. -->
-      <script>
-        let checkbox<?php echo $id_clase_chkbx; ?> = document.getElementById("chkbx-<?php echo $id_clase_chkbx; ?>")
-        if (checkbox<?php echo $id_clase_chkbx; ?>) {
-          checkbox<?php echo $id_clase_chkbx; ?>.addEventListener("click", () => console.log(checkbox<?php echo $id_clase_chkbx; ?>));
-        } else {
-          console.warn("Checkbox no encontrado para ID <?php echo $id_clase_chkbx; ?>")
-        }
-      </script>
-<?php
-    }
-  } else {
-    echo "<tr><td colspan='8' style='font-size:20px;'>No se encontró ninguna clase registrada...</td></tr>";
-  }
-}
 
-?>
+
+
+
+
+
