@@ -5,18 +5,19 @@ function bienvenida($conn){
     $queryWelcome = "SELECT NOMBRE_PERSONA, APELLIDO_PERSONA, CARGO FROM PERSONAS WHERE CARGO = 'Profesor'";
     $res_queryWelcome = mysqli_query($conn, $queryWelcome);
     ?>
-    <p class="msg-bienvenida">
-    <?php
-        if ($res_queryWelcome) {
-            $fila_welcome = mysqli_fetch_assoc($res_queryWelcome);
-            ?>
-            <?php echo "¡Bienvenido " . $fila_welcome['NOMBRE_PERSONA'] . " " . $fila_welcome['APELLIDO_PERSONA']; ?>! 
-            <span style="font-weight: bold; color:darkorange;">(<?php echo $fila_welcome['CARGO']; ?>)</span>
-    </p>    <?php
-        } 
-        else {
-            echo "Hubo un error al hacer la consulta de Bienvenida: " . mysqli_error($conn);
-        }
+        <p class="msg-bienvenida">
+            <?php
+            if ($res_queryWelcome) {
+                $fila_welcome = mysqli_fetch_assoc($res_queryWelcome);
+                ?>
+                <?php echo $fila_welcome['NOMBRE_PERSONA'] . " " . $fila_welcome['APELLIDO_PERSONA']; ?> 
+                <span style="font-weight: bold; color:darkorange;">(<?php echo $fila_welcome['CARGO']; ?>)</span>
+        </p>        
+        <?php
+            } 
+            else {
+                echo "Hubo un error al hacer la consulta de Bienvenida: " . mysqli_error($conn);
+            }
 }
 ?>
 

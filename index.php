@@ -32,7 +32,7 @@ date_default_timezone_set('America/Buenos_Aires');
 
 <body>
   <header id="header">
-    <p class="name-page">Gestión de Clases</p>
+    <!-- <p class="name-page">Gestión de Clases</p> -->
     <nav id="nav-bar">
       <ul>
         <a href="#" target="_blank" class="nav-links">
@@ -69,18 +69,17 @@ date_default_timezone_set('America/Buenos_Aires');
   }
   ?>
 
+  <div class="bg-body-style"></div>
+
   <main>
-
-    <div class="contenedor-bienvenida-msg">
-      <?php  bienvenida($conn); ?>
-    </div>
-
-
     <div class="container">
 
       <section id="seccion-menu">
         <div class="descripcion-menu">
-          <h3 class="heading3-descripcion">¿Qué quieres hacer?</h3>
+          <img class="img-perfil-user" src="https://github.com/pablotorrez15.png" alt="Foto de Perfil de Usuario Profesor" width="80" height="80">
+          <div class="contenedor-bienvenida-msg">
+            <?php bienvenida($conn); ?>
+          </div>
         </div>
         <div class="seccion-menu__items">
           <button class="btns-menu btn-alta" id="id-btn-alta">Alta de clase</button>
@@ -133,9 +132,16 @@ date_default_timezone_set('America/Buenos_Aires');
     </div>
   </main>
 
-  <footer>
-
-  </footer>
+  <footer class="footer">
+  <aside>
+    <p>
+      Gestión de Clases Profesores - SAE
+      <br />
+      Sistema de Administración Educativa
+    </p>
+    <p>Copyright © - All right reserved</p>
+  </aside>
+</footer>
   
 </body>
 

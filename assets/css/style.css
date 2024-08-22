@@ -13,6 +13,19 @@ body {
   margin: 0 !important;
   max-width: 100% !important;
   font-family: system-ui;
+  background-color: #000;
+}
+
+.bg-body-style{
+  position: absolute;
+  top: 0;
+  z-index: -2;
+  height: 100vh;
+  width: 100%;
+  background-color: #1f1f1f;
+  background: radial-gradient(ellipse 85% 85% at 50% -5%,
+      rgba(120, 119, 198, 0.3),
+      rgba(255, 255, 255, 0));
 }
 
 .carga {
@@ -31,33 +44,41 @@ li {
 
 /* --- Header Section --- */
 header {
-  padding: 20px 10px;
+  padding: 10px 40px;
+  margin-top: 10px;
+  width: auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background: #202020;
-  font-weight: 800;
+  background: rgba(189, 189, 189, 0.219);
+  backdrop-filter: blur(8px);
+  border-radius: 50px;
+  position:fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 }
 
 .name-page {
   text-transform: uppercase;
-
 }
 
 #nav-bar ul {
   display: flex;
   align-items: center;
   flex-direction: row;
-  gap: 15px;
+  gap: 20px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 #nav-bar li {
-  background: rgb(62, 66, 100);
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-size: clamp(0.7rem, 3.7vw, 1rem)
+  font-size: 18px;
+  position: relative;
 }
 
 #nav-bar .nav-links {
@@ -65,35 +86,46 @@ header {
   text-decoration: none;
 }
 
-#nav-bar li:hover {
-  background: rgb(30, 31, 46);
-  outline: 1px solid #7e7e7e;
+#nav-bar li::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background-color: #fff;
+  transition: width 0.3s ease;
 }
 
-.contenedor-bienvenida-msg {
+#nav-bar li:hover::after {
+  width: 100%;
+}
+
+/* Seccion bienvenida usuario (admin y profes) */
+.contenedor-bienvenida-msg, span {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 20px;
+  margin: 5px;
   font-size: 20px;
 }
 
 .msg-bienvenida {
   text-wrap: nowrap;
-  font-size: clamp(1rem, 5.7vw, 1.4rem);
 }
 
+.img-perfil-user {
+  border-radius: 50%;
+}
 
 /* Seccion menu de administrador */
 main {
-  margin: 0 20px;
+  margin: 50px 20px;
 }
 
 .container {
-  border: 1px solid var(--color-borders-main);
-  margin: 50px 0px;
-  padding: 5px 25px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -101,9 +133,10 @@ main {
 
 #seccion-menu,
 #seccion-tabla {
-  padding: 10px 20px;
+  padding: 3rem 12px;
   margin: 15px 10px;
-  border: 1px solid var(--color-borders-main);
+  border-radius: 30px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e 50%, #0f3460 100%);
 }
 
 #seccion-menu {
@@ -355,6 +388,17 @@ tbody tr:nth-child(even) {
   background-color: red;
 
 }
+
+footer {
+  background-color: #0d6efd;
+  /* bg-primary */
+  color: #ffffff;
+  /* text-primary-content */
+  padding: 2.5rem;
+  /* p-10 */
+  text-align: center;
+}
+
 
 @keyframes girar {
   0% {
