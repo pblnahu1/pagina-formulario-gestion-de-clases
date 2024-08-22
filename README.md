@@ -1,9 +1,9 @@
 # Interfaz de Gestión de Clases - Profesores
 ## Imágenes del proyecto
 
-| ![alt text](/assets/img/v2.0-img-panel.png "Muestra Panel") | ![alt text](/assets/img/v2.0-img-alta.png "Muestra Modal Alta") |
+| ![alt text](/assets/img/prototipo/v2.0-img-panel.png "Muestra Panel") | ![alt text](/assets/img/prototipo/v2.0-img-alta.png "Muestra Modal Alta") |
 |:---------------------------------------------------------------------:|:---------------------------------------------------------------------:|
-| ![alt text](/assets/img/v2.0-img-baja.png "Muestra Modal Baja") | ![alt text](/assets/img/v2.0-img-modif.png "Muestra Modal Modificación") |
+| ![alt text](/assets/img/prototipo/v2.0-img-baja.png "Muestra Modal Baja") | ![alt text](/assets/img/prototipo/v2.0-img-modif.png "Muestra Modal Modificación") |
 
 <img src="/assets/img/icono.png" alt="Esto es el icono del sistema" width="150"/><img src="/assets/img/logo.png" alt="Esto es el logo del sistema" width="150"/>
 
