@@ -12,10 +12,11 @@ date_default_timezone_set('America/Buenos_Aires');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
+  <meta name="author" content="Gustavo Pavón, Maximiliano Acuña, Pablo Torrez">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gestión de Clases</title>
   <!-- Librería WaterCSS -->
@@ -32,7 +33,6 @@ date_default_timezone_set('America/Buenos_Aires');
 
 <body>
   <header id="header">
-    <p class="name-page">Gestión de Clases</p>
     <nav id="nav-bar">
       <ul>
         <a href="#" target="_blank" class="nav-links">
@@ -57,7 +57,7 @@ date_default_timezone_set('America/Buenos_Aires');
     $message = $_SESSION['message'];
     unset($_SESSION['message']); 
 
-    if ( $message['type'] == 'error') {      ?>
+    if ( $message['type'] == 'error') { ?>
       <script>
         const $modal = document.querySelector(".modal"); 
         const bad = document.querySelector(".bad");
@@ -69,18 +69,17 @@ date_default_timezone_set('America/Buenos_Aires');
   }
   ?>
 
+  <div class="bg-body-style"></div>
+
   <main>
-
-    <div class="contenedor-bienvenida-msg">
-      <?php  bienvenida($conn); ?>
-    </div>
-
-
     <div class="container">
 
       <section id="seccion-menu">
         <div class="descripcion-menu">
-          <h3 class="heading3-descripcion">¿Qué quieres hacer?</h3>
+          <img class="img-perfil-user" src="https://github.com/pablotorrez15.png" alt="Foto de Perfil de Usuario Profesor" width="80" height="80">
+          <div class="contenedor-bienvenida-msg">
+            <?php bienvenida($conn); ?>
+          </div>
         </div>
         <div class="seccion-menu__items">
           <button class="btns-menu btn-alta" id="id-btn-alta">Alta de clase</button>
@@ -95,11 +94,11 @@ date_default_timezone_set('America/Buenos_Aires');
       <section id="seccion-tabla">
         <div class="contenedor-buscador-filtros">
           <div class="search">
-            <input class="input-search" type="text" placeholder="Buscar">
-            <input class="input-submit-search" type="submit" value="🔎">
+            <input id="searchInput" class="input-search" type="text" placeholder="Buscar por materia, comisión, aula...">
+            <input id="searchButton" class="input-submit-search" type="submit" value="🔎">
           </div>
           <div class="filter">
-            <select>
+            <select id="filterSelect">
               <option value="">Filtrar</option>
               <option value="Por fecha">Por fecha</option>
               <option value="Por hora">Por hora</option>
@@ -110,40 +109,35 @@ date_default_timezone_set('America/Buenos_Aires');
     
 
         <div class="contenedor-tabla_principal">
-          <table class="table_principal-heads">
+          <table class="table_principal-heads" id="table_principal_principal">
               <thead>
                 <tr>
                   <th class="columna-checkbox"></th>
-                  <th >Materia</th>
-                  <th >Comisión</th>
-                  <th >Aula</th>
-                  <th >Hora</th>
-                  <th >Fecha</th>
-                  <th >Temas</th>
-                  <th >Novedades</th>
-                  <th >Archivos</th>
+                  <th>Materia</th>
+                  <th>Comisión</th>
+                  <th>Aula</th>
+                  <th>Hora</th>
+                  <th>Fecha</th>
+                  <th>Temas</th>
+                  <th>Novedades</th>
+                  <th>Archivos</th>
                 </tr>
               </thead>
           </table>
-          <?php  buscarClases($conn);  ?>
+          <?php buscarClases($conn); ?>
         </div>
-
       </section>
-      
     </div>
   </main>
 
-  <footer>
-
+  <footer class="footer">
+    <aside>
+      <p>Gestión de Clases Profesores - SAE<br />Sistema de Administración Educativa</p>
+      <p>Copyright © - All right reserved</p>
+    </aside>
   </footer>
   
+  <script src="assets/js/search.js" defer></script>
 </body>
 
 </html>
-
-
-
-
-
-
-

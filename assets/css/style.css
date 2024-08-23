@@ -13,6 +13,19 @@ body {
   margin: 0 !important;
   max-width: 100% !important;
   font-family: system-ui;
+  background-color: #000;
+}
+
+.bg-body-style{
+  position: fixed;
+  top: 0;
+  z-index: -2;
+  height: 100vh;
+  width: 100%;
+  background-color: #1f1f1f;
+  background: radial-gradient(ellipse 100% 100% at 50% -0.5%,
+      rgba(120, 119, 198, 0.3),
+      rgba(255, 255, 255, 0));
 }
 
 .carga {
@@ -31,33 +44,41 @@ li {
 
 /* --- Header Section --- */
 header {
-  padding: 20px 10px;
+  padding: 10px 40px;
+  margin-top: 10px;
+  width: auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background: #202020;
-  font-weight: 800;
+  background: rgba(189, 189, 189, 0.219);
+  backdrop-filter: blur(8px);
+  border-radius: 50px;
+  position:fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 }
 
 .name-page {
   text-transform: uppercase;
-
 }
 
 #nav-bar ul {
   display: flex;
   align-items: center;
   flex-direction: row;
-  gap: 15px;
+  gap: 20px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 #nav-bar li {
-  background: rgb(62, 66, 100);
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-size: clamp(0.7rem, 3.7vw, 1rem)
+  font-size: 18px;
+  position: relative;
 }
 
 #nav-bar .nav-links {
@@ -65,35 +86,46 @@ header {
   text-decoration: none;
 }
 
-#nav-bar li:hover {
-  background: rgb(30, 31, 46);
-  outline: 1px solid #7e7e7e;
+#nav-bar li::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background-color: #fff;
+  transition: width 0.3s ease;
 }
 
-.contenedor-bienvenida-msg {
+#nav-bar li:hover::after {
+  width: 100%;
+}
+
+/* Seccion bienvenida usuario (admin y profes) */
+.contenedor-bienvenida-msg, span {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 20px;
+  margin: 5px;
   font-size: 20px;
 }
 
 .msg-bienvenida {
   text-wrap: nowrap;
-  font-size: clamp(1rem, 5.7vw, 1.4rem);
 }
 
+.img-perfil-user {
+  border-radius: 50%;
+}
 
 /* Seccion menu de administrador */
 main {
-  margin: 0 20px;
+  margin: 50px 20px;
 }
 
 .container {
-  border: 1px solid var(--color-borders-main);
-  margin: 50px 0px;
-  padding: 5px 25px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -101,9 +133,10 @@ main {
 
 #seccion-menu,
 #seccion-tabla {
-  padding: 10px 20px;
+  padding: 3rem 12px;
   margin: 15px 10px;
-  border: 1px solid var(--color-borders-main);
+  border-radius: 30px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e 50%, #0f3460 100%);
 }
 
 #seccion-menu {
@@ -194,10 +227,16 @@ main {
 }
 
 .contenedor-tabla_principal {
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 60vh;
-  border: 1px solid #000;
+  width: 100%;
+  overflow-x: auto;
+  height: 70vh;
+  margin-top: 48px;
+}
+
+table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
 }
 
 td,
@@ -246,12 +285,10 @@ tbody tr:nth-child(even) {
 }
 
 .contenedor-materia {
-  background-color: transparent;
+  /* background-color: transparent; */
   max-height: 31px;
   transition: max-height .5s;
   overflow: hidden;
-  display: block;
-  background-color: #161f27;
 }
 
 .contenedor-materia:has(input[type="checkbox"]:checked) {
@@ -263,7 +300,9 @@ tbody tr:nth-child(even) {
   background-color: #161f27;
   font-weight: bold;
   display: flex;
-  border: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-top: 1px solid #000;
   flex-direction: row;
   justify-content: space-between;
   padding: 0 20px 0 5px;
@@ -356,6 +395,15 @@ tbody tr:nth-child(even) {
 
 }
 
+footer {
+  background: #000;
+  border: none;
+  color: #ffffff;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+
 @keyframes girar {
   0% {
     transform: rotate(0deg);
@@ -372,11 +420,11 @@ tbody tr:nth-child(even) {
 
 @media screen and (max-width: 1200px) {
 
+  main {
+    margin: 100px 20px;
+  }
+
   .container {
-    /* display: grid;
-    grid-auto-columns: 100%;
-    place-items: center;
-    gap: 1em; */
     flex-direction: column;
     align-items: center;
   }
@@ -394,13 +442,14 @@ tbody tr:nth-child(even) {
   .search {
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: center;outline: none;
   }
 
   .search,
   .input-search,
   .filter {
     width: 100%;
+    
   }
 
   .input-search,
@@ -408,18 +457,22 @@ tbody tr:nth-child(even) {
     margin: 8px 0px;
   }
 
+  .input-search:focus,
+  .input-submit-search:focus {
+    outline: none;
+  }
+
   .filter select {
     width: 100%;
   }
 
-  .contenedor-tabla_principal {
+  /* .contenedor-tabla_principal {
     overflow-y: scroll;
     overflow-x: scroll;
-  }
-
+  } */
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 870px) {
 
   .titulo-materia {
     padding: 0;
@@ -428,6 +481,15 @@ tbody tr:nth-child(even) {
   .contenedor-materia b {
     letter-spacing: 0px;
   }
+
+  header {
+    width: 95%;
+  }
+
+    #seccion-menu,
+    #seccion-tabla {
+      margin: 20px 0;
+    }
 
 }
 
