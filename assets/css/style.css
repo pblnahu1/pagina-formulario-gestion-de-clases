@@ -340,7 +340,7 @@ tbody tr:nth-child(even) {
 }
 
 .notificacion-mensaje-box {
-  background-color: #f9fafb;
+  background: linear-gradient(298deg, #16213e 50%, #0f3460 100%);
   border-radius: 0.5rem;
   padding: 2rem 2.5rem;
   text-align: center;
@@ -373,13 +373,13 @@ tbody tr:nth-child(even) {
   margin: 1rem 0;
   font-size: 1.875rem;
   font-weight: 600;
-  color: #374151;
+  color: #fff;
 }
 
 .notificacion-text {
   width: 14.375rem;
   font-size: 1rem;
-  color: #4b5563;
+  color: #fff;
 }
 
 .icon-alta {
