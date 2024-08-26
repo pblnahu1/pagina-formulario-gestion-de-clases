@@ -60,6 +60,7 @@ header {
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
+  text-wrap: nowrap;
 }
 
 .name-page {
@@ -463,42 +464,16 @@ tbody tr:nth-child(even) {
   } */
 }
 
-@media screen and (max-width: 870px) {
-
-  .titulo-materia {
-    padding: 0;
-  }
-
-  .contenedor-materia b {
-    letter-spacing: 0px;
-  }
+@media screen and (max-width: 400px) {
 
   header {
     width: 95%;
   }
-
-    #seccion-menu,
-    #seccion-tabla {
-      margin: 20px 0;
-    }
-
-}
-
-@media screen and (max-width: 380px) {
-
-  .contenedor-materia b {
-    letter-spacing: -1px;
+  
+  #seccion-menu,
+  #seccion-tabla {
+    margin: 20px 0;
   }
 
 }
 
-
-
-@media screen and (max-width: 330px) {
-
-  .contenedor-materia b {
-    letter-spacing: -2px;
-    font-weight: 500;
-  }
-
-}
