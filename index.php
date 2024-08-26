@@ -129,13 +129,6 @@ date_default_timezone_set('America/Buenos_Aires');
       </section>
     </div>
   </main>
-
-  <footer class="footer">
-    <aside>
-      <p>Gestión de Clases Profesores - SAE<br />Sistema de Administración Educativa</p>
-      <p>Copyright © - All right reserved</p>
-    </aside>
-  </footer>
   
   <script src="assets/js/search.js" defer></script>
 </body>
