@@ -16,7 +16,8 @@ a:hover {
   opacity: 0 !important;
   pointer-events: none !important;
   transition: opacity .6s !important;
-  z-index: 20;
+  z-index: 1010
+  ;
 }
 
 .modal--show,
@@ -38,7 +39,6 @@ body:has(.modal--show, .modal2--show, .modal3--show) {
   background: linear-gradient(135deg, #1a1a2e, #16213e 50%, #0f3460 100%);
   margin: auto;
   max-width: 600px;
-  max-height: 90%;
   border-radius: 30px;
   padding: 1em 2.5em;
   display: grid;
