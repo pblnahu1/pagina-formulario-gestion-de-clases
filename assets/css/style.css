@@ -78,7 +78,7 @@ header {
 }
 
 #nav-bar li {
-  font-size: 18px;
+  font-size: clamp(0.9rem,3.7vw,1.2rem);
   position: relative;
 }
 
