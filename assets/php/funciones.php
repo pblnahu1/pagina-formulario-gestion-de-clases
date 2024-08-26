@@ -156,6 +156,7 @@ function altaDeClase($conn, $id_usuario, $id_materia, $comision, $aula, $fecha, 
         <link rel="icon" href="assets/img/icono.png">
     </head>
     <body>
+      <div class="bg-body-style">
       <div class="notificacion-container">
         <div class="notificacion-mensaje-box">
           <div class="notificacion-icon-container container-icon-alta">
@@ -168,6 +169,7 @@ function altaDeClase($conn, $id_usuario, $id_materia, $comision, $aula, $fecha, 
             <h3 class="notificacion-heading">¡Éxito!</h3>
             <p class="notificacion-text">¡La clase se agregó correctamente!</p>
         </div>
+      </div>
       </div>
       <script>
         setTimeout(() => {
@@ -214,6 +216,7 @@ function modificacionDeClase($conn, $id_usuario, $id_materia, $comision, $aula, 
         <link rel="icon" href="assets/img/icono.png">
       </head>
       <body >
+        <div class="bg-body-style">
         <div class="notificacion-container">
           <div class="notificacion-mensaje-box">
             <div class="notificacion-icon-container container-icon-alta">
@@ -226,6 +229,7 @@ function modificacionDeClase($conn, $id_usuario, $id_materia, $comision, $aula, 
             <h3 class="notificacion-heading">¡Éxito!</h3>
             <p class="notificacion-text">¡La clase se modifico correctamente!</p>
           </div>
+        </div>
         </div>
         <script>
         setTimeout(() => {
@@ -288,6 +292,7 @@ function bajaDeClase($conn, $id_usuario, $clases_seleccionadas ){
           <link rel="icon" href="assets/img/icono.png">
         </head>
         <body >
+          <div class="bg-body-style">
           <div class="notificacion-container">
             <div class="notificacion-mensaje-box">
               <div class="notificacion-icon-container container-icon-eliminar">
@@ -300,6 +305,7 @@ function bajaDeClase($conn, $id_usuario, $clases_seleccionadas ){
               <h3 class="notificacion-heading">Eliminado...</h3>
               '.$mensajeExito.'
             </div>
+          </div>
           </div>
           <script>
             setTimeout(() => {
