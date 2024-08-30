@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const filterSelect = document.getElementById('filterSelect'); // referencia del select de filtrado
   const table = document.querySelectorAll('.table_principal-body'); // referencia de las tablas de clases
   const tituloMateria = document.querySelectorAll('.titulo-materia'); // referencia al div que almacena la materia
+  const contenedorTituloMateria = document.querySelectorAll('.contenedor-materia');
 
   // Función que hará el filtrado de búsqueda
   function filterTable(e) {
@@ -73,8 +74,13 @@ document.addEventListener('DOMContentLoaded', function () {
         // muestro u oculto el div de la materia q tienen sus clases según el filtro
         tituloMateria.forEach(div => {
           div.style.display = rowContainsText ? '' : 'none';
+          // div.style.backgroundColor = rowContainsText ? 'blue' : 'red';
           rows[i].style.display = rowContainsText ? '' : 'none';
         });
+
+        contenedorTituloMateria.forEach(conte => {
+          conte.style.maxHeight = rowContainsText ? '' : 'fit-content';
+        })
       }
     });
 
