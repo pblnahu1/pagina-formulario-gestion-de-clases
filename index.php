@@ -98,18 +98,18 @@ date_default_timezone_set('America/Buenos_Aires');
             <input id="searchButton" class="input-submit-search" type="submit" value="🔎">
           </div>
           <div class="filter">
-            <select id="filterSelect">
+            <select id="filterSelect" class="Filtrar">
               <option value="">Filtrar</option>
-              <option value="Por fecha">Por fecha</option>
-              <option value="Por hora">Por hora</option>
               <option value="Por Materia">Por Materia</option>
+              <option value="Por Hora">Por Hora</option>
+              <option value="Por Fecha">Por Fecha</option>
             </select>
           </div>
         </div>
     
 
         <div class="contenedor-tabla_principal">
-          <table class="table_principal-heads" id="table_principal_principal">
+          <table>
               <thead>
                 <tr>
                   <th class="columna-checkbox"></th>
