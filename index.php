@@ -109,7 +109,7 @@ date_default_timezone_set('America/Buenos_Aires');
     
 
         <div class="contenedor-tabla_principal">
-          <table>
+          <table class="table_principal-heads">
               <thead>
                 <tr>
                   <th class="columna-checkbox"></th>
