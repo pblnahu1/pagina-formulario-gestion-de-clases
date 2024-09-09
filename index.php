@@ -95,11 +95,10 @@ date_default_timezone_set('America/Buenos_Aires');
         <div class="contenedor-buscador-filtros">
           <div class="search">
             <input id="searchInput" class="input-search" type="text" placeholder="Buscar por materia, comisión, aula...">
-            <input id="searchButton" class="input-submit-search" type="submit" value="🔎">
           </div>
           <div class="filter">
             <select id="filterSelect" class="Filtrar">
-              <option value="">Filtrar</option>
+              <option value="Filtrar">Filtrar</option>
               <option value="Por Materia">Por Materia</option>
               <option value="Por Hora">Por Hora</option>
               <option value="Por Fecha">Por Fecha</option>
