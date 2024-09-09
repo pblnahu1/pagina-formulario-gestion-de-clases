@@ -3,6 +3,7 @@ const $modal = d.querySelector(".modal"); // Variable global
 const $modal2 = d.querySelector(".modal2"); // Variable global
 const $modal3 = d.querySelector(".modal3"); // Variable global
 const $checkboxModifyDelete = document.querySelectorAll(".input-checkbox-register");
+
 export { $checkboxModifyDelete };
 
 function limpiarCampos(elemento) {
@@ -92,7 +93,7 @@ export const fn_button_modificacion = (openModalModificacion, closeModalModifica
 
 }
 
-export const fn_button_baja = (openModalBaja, closeModalBaja) => {
+export const fn_button_baja = (openModalBaja, closeModalBaja, btnBorrarClases) => {
   const table_modal_baja = document.querySelector('#table_modal_baja tbody');
 
   openModalBaja.addEventListener("click", (e) => {
@@ -138,6 +139,10 @@ export const fn_button_baja = (openModalBaja, closeModalBaja) => {
 
   });
 
+  btnBorrarClases.addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("¿Estás seguro de borrar estas clases? (no se puede revertir)")
+  })
 }
 
 

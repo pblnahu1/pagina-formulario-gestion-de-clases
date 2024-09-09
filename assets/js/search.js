@@ -2,7 +2,6 @@
 // cuando cargue el DOM va a ejecutar los siguientes fragmentos de código
 document.addEventListener('DOMContentLoaded', function () {
   const searchInput = document.getElementById('searchInput'); // referencia del input de búsqueda
-  const searchButton = document.getElementById('searchButton'); // referencia del botón de búsqueda
   const filterSelect = document.getElementById('filterSelect'); // referencia del select de filtrado
   const table = document.querySelectorAll('.table_principal-body'); // referencia de las tablas de clases
   const tituloMateria = document.querySelectorAll('.titulo-materia'); // referencia al div que almacena la materia
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const cells = rows[i].getElementsByTagName('td');
         
         let rowContainsText = false; // Inicializo y declaro en false para ver si la fila actual tiene el texto actual ingresado
-        let columnIndex; // inicializo el índice a verificar, por defecto es -1
   
         // Si el valor es igual a "Filtrar"
         if (filterValue === "Filtrar") {
@@ -40,20 +38,25 @@ document.addEventListener('DOMContentLoaded', function () {
           columnIndex = -1; // esto es para que no se filtre en ninguna columna específica
           searchInput.value = ""; // limpio el input de búsqueda
           searchInput.placeholder = "Buscar por materia, comisión, aula..."; // cambio el texto del placeholder para decir que no se aplicó ningún filtro
+          searchInput.disabled = true
         } else {
+          let columnIndex; // inicializo el índice a verificar, por defecto es -1
           // Si se selecciona un filtro específico hacer para cada caso
           switch (filterValue) {
             case "Por Materia":
               columnIndex = 2; // fijo la columna que se va a filtrar (materia)
               searchInput.placeholder = "Buscar por materia...";
+              searchInput.disabled = false
               break;
             case "Por Hora":
               columnIndex = 5; // fijo la columna que se va a filtrar (hora)
               searchInput.placeholder = "Buscar por Hora...";
+              searchInput.disabled = false
               break;
             case "Por Fecha":
               columnIndex = 6; // fijo la columna que se va a filtrar (fecha)
               searchInput.placeholder = "Buscar por Fecha...";
+              searchInput.disabled = false
               break;
           }
 
@@ -88,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Establezco eventos de Click, Change y KeyUp
-  searchButton.addEventListener('click', filterTable);
   filterSelect.addEventListener('change', filterTable);
   searchInput.addEventListener('keyup', filterTable);
 });

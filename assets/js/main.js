@@ -11,6 +11,8 @@ d.addEventListener("DOMContentLoaded", () => {
   const $btnModificar = d.getElementById("id-btn-modificar")
   const $btnBaja = d.getElementById("id-btn-baja")
 
+  const $btnBorrarClases = d.getElementById("borrarClasesId");
+
   let clasesSeleccionadas = [];
 
   function estadoBtns() {
@@ -65,6 +67,6 @@ d.addEventListener("DOMContentLoaded", () => {
 
   fn_button_alta($btnAlta, $closeModal);
   fn_button_modificacion($btnModificar, $closeModal3);
-  fn_button_baja($btnBaja, $closeModal2);
+  fn_button_baja($btnBaja, $closeModal2, $btnBorrarClases);
 
 });
