@@ -18,18 +18,12 @@ function completarCampos(elemento, contenido) {
 
 export const fn_button_alta = (openModalAlta, closeModalAlta) => {
   openModalAlta.addEventListener("click", (e) => {
-    // e.preventDefault()
     $modal.classList.add("modal--show");
-
   })
-
 
   closeModalAlta.addEventListener("click", (e) => {
-    // e.preventDefault();
     $modal.classList.remove("modal--show");
-
   })
-
 }
 
 export const fn_button_modificacion = (openModalModificacion, closeModalModificacion) => {
@@ -43,7 +37,6 @@ export const fn_button_modificacion = (openModalModificacion, closeModalModifica
     const campo_novedad = document.querySelector('#novedad-id');
     const campo_archivo = document.querySelector('#archivo_actual');
 
-    // e.preventDefault()
     limpiarCampos(opcion_materia);
     limpiarCampos(opcion_comision);
     limpiarCampos(campo_aula);
@@ -76,28 +69,21 @@ export const fn_button_modificacion = (openModalModificacion, closeModalModifica
         completarCampos(campo_temas, temas);
         completarCampos(campo_novedad, novedades);
         campo_archivo.innerHTML = `${archivos}`
-
       }
-
     });
 
     $modal3.classList.add("modal3--show");
-
   });
-
 
   closeModalModificacion.addEventListener("click", (e) => {
-    // e.preventDefault();
     $modal3.classList.remove("modal3--show");
   });
-
 }
 
-export const fn_button_baja = (openModalBaja, closeModalBaja, btnBorrarClases) => {
+export const fn_button_baja = (openModalBaja, closeModalBaja) => {
   const table_modal_baja = document.querySelector('#table_modal_baja tbody');
 
   openModalBaja.addEventListener("click", (e) => {
-    // e.preventDefault()
     table_modal_baja.innerHTML = ''; // Limpiar la tabla del modal
 
     $checkboxModifyDelete.forEach(checkbox => {
@@ -134,15 +120,8 @@ export const fn_button_baja = (openModalBaja, closeModalBaja, btnBorrarClases) =
 
 
   closeModalBaja.addEventListener("click", (e) => {
-    // e.preventDefault();
     $modal2.classList.remove("modal2--show");
-
   });
-
-  btnBorrarClases.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("¿Estás seguro de borrar estas clases? (no se puede revertir)")
-  })
 }
 
 

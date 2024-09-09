@@ -27,7 +27,7 @@
 
       </table>
 
-      <input type="submit" name="btn_Baja" value="Eliminar" class="btn_form_modal" id="borrarClasesId">
+      <input type="submit" name="btn_Baja" value="Eliminar" class="btn_form_modal">
       
     </form>
   </div>

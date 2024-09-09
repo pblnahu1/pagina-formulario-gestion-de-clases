@@ -28,8 +28,7 @@ function mostrarDatos($result){
   if (isset($result) && $result->num_rows > 0) {
     $id_clase_chkbx = null;
     while ($fila = mysqli_fetch_array($result)) {
-      $id_clase_chkbx = $fila['ID_CLASE'];
-      //$_SESSION['CLASES_SELECCIONADAS'] = $id_clase_chkbx;  
+      $id_clase_chkbx = $fila['ID_CLASE']; 
       ?>
       <tr>
           <td class="columna-checkbox" ><input class="input-checkbox-register" type="checkbox" name="seleccionar_registro" value="<?php echo $id_clase_chkbx; ?>"></td>
