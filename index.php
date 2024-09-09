@@ -94,7 +94,7 @@ date_default_timezone_set('America/Buenos_Aires');
       <section id="seccion-tabla">
         <div class="contenedor-buscador-filtros">
           <div class="search">
-            <input id="searchInput" class="input-search" type="text" placeholder="Buscar por materia, comisión, aula...">
+            <input id="searchInput" disabled class="input-search" type="text" placeholder="Buscar por materia, comisión, aula...">
           </div>
           <div class="filter">
             <select id="filterSelect" class="Filtrar">
